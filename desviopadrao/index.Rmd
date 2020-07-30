@@ -1,0 +1,279 @@
+---
+title: "Medidas de dispersão"
+categories: ["Variancia","Desvio-Padrao","UNIRIO"]
+tags: ["Variancia","Desvio-Padrao","UNIRIO"]
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: "16:9"
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(fontawesome)
+
+```
+
+
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+.myfont {
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 80px;
+}
+
+.preto {
+  color: black;
+  font-size: 30px;
+}
+
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1381B0",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF")
+```
+
+
+```{r meta, eval=FALSE, echo=FALSE,message=FALSE,warning=FALSE}
+library(metathis)
+meta() %>%
+  meta_general(
+  description = "Conceito de variancia e desvio-padrao.") %>%
+  meta_description("Medidas de variabilidade.")
+ 
+```
+
+# Imagine que temos duas ruas na cidade. 
+
+<br>
+<br>
+
+## Em cada uma dessas ruas temos cinco prédios com alturas diferentes. 
+
+## Temos prédios altos e prédios baixos.
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/desviopadrao/Slide2.PNG)
+background-size: 900px
+
+---
+class: center, middle
+
+<br>
+<br>
+<br>
+# Qual seria a altura média dos prédios dessa rua?
+
+
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/desviopadrao/Slide3.PNG)
+background-size: 900px
+
+
+
+
+---
+class: center, middle
+
+<br>
+<br>
+<br>
+# Já na rua azul, temos os seguintes prédios:
+
+
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/desviopadrao/Slide4.PNG)
+background-size: 900px
+
+---
+class: center, middle
+
+<br>
+<br>
+<br>
+# Qual seria a altura média dos prédios da rua azul?
+
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/desviopadrao/Slide5.PNG)
+background-size: 900px
+
+
+---
+class: center, middle
+
+<br>
+<br>
+
+# Se eles têm a mesma média, eles são iguais? 
+
+<br>
+
+# Qual a diferença entre os prédios azuis e os prédios vermelhos?
+
+
+
+---
+class: center, middle
+
+<br>
+<br>
+
+# A diferença é na variabilidade (diversidade das alturas dos prédios). 
+
+<br>
+
+## Qual rua tem maior variabilidade em torno da média? 
+
+---
+class: center, middle
+
+<br>
+<br>
+
+# Poderíamos criar uma estatística para representar essa variabilidade das alturas dos prédios?
+
+
+---
+
+
+
+# Definição: Variância amostral  
+
+### A variância de uma amostra de n elementos é definida como a soma ao quadrado dos desvios dos elementos em relação à sua média dividido por (n-1). Ou seja, a variância amostral é dada por:
+
+$$s^2 = \frac{1}{n-1}\sum\limits_{i = 1}^n {\left( {x_i - \bar x} \right)^2 }  $$
+
+
+---
+
+# Definição: Desvio padrão amostral  
+
+### O desvio padrão amostral de um conjunto de dados é igual à raiz quadrada da variância amostral. Desta forma, o desvio padrão amostral é dado por:
+
+
+$$s = \sqrt {\frac{1}{n-1}\sum\limits_{i = 1}^n {\left( {x_i - \bar x} \right)^2 } }  $$
+
+---
+class: center, middle
+
+
+
+# Vamos utilizar a formula para encontrar a variância e o desvio-padrão dos prédios azuis.
+
+
+
+
+---
+class: center, bottom, preto
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/desviopadrao/Slide12.PNG)
+background-size: 900px
+
+
+Dentro do circulo azul temos os valores ao quadrado.
+
+
+---
+
+# Faça a soma e divida por número de observações – 1  
+
+$Variância = ( 9 + 4 + 144 + 9 + 64 )/ 4$  
+$Variância =  230 / 4$  
+$Variância = 57,5$   
+
+# O desvio-padrão (DP) será a raiz quadrada da variância: 
+
+$DP =  \sqrt {Variância} $  
+$DP = 7,58$  
+
+
+---
+
+# Atividades
+
+### 1. Encontre a variância e o desvio-padrão dos prédios vermelhos.   
+### 2. Qual das duas variâncias (azuis ou vermelhos) é maior?   
+### 3. Isso faz sentido? Está de acordo com a sua análise do gráfico?
+
+
+---
+
+
+# Chega de fazer conta na mão  
+# Vamos refazer esse resultado com o no `r fa("r-project",  height = 50 ,fill = "steelblue")` 
+
+
+---
+
+```{r}
+variancia <- ( 9 + 4 + 144 + 9 + 64 )/ 4
+dp <- sqrt(variancia)
+
+# Azul
+azul<-c(70,65,55,70,75)
+
+media_azul<-mean(azul)
+
+var_azul<-var(azul)
+
+dp_azul<-sd(azul)
+
+
+# Vermelho
+vermelho<-c(40,95,55,80,65)
+
+media_vermelho<-mean(vermelho)
+
+variancia_vermelho<-var(vermelho)
+
+dp_vermelho<-sd(vermelho)
+
+```
+
+
+---
+class: center, middle
+
+
+# Nota: a média não é suficiente. Ela precisa vir acompanhada de uma medida de dispersão.
+
+
+---
+class: middle
+
+# Vamos fazer em um banco de dados!
+
+
+---
+class: middle, bottom
+
+
+Referência    
+
+[https://www.facebook.com/rtrainings/](https://www.facebook.com/rtrainings/)   
+
+[http://www.portalaction.com.br/estatistica-basica/22-medidas-de-dispersao](http://www.portalaction.com.br/estatistica-basica/22-medidas-de-dispersao)
