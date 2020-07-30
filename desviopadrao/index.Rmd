@@ -175,7 +175,7 @@ $$s^2 = \frac{1}{n-1}\sum\limits_{i = 1}^n {\left( {x_i - \bar x} \right)^2 }  $
 ### O desvio padrão amostral de um conjunto de dados é igual à raiz quadrada da variância amostral. Desta forma, o desvio padrão amostral é dado por:
 
 
-$$s = \sqrt {\frac{1}{n-1}\sum\limits_{i = 1}^n {\left( {x_i - \bar x} \right)^2 } }  $$
+$$s = \sqrt{\frac{1}{n-1}\sum\limits_{i = 1}^n {\left( {x_i - \bar x} \right)^2 } }  $$
 
 ---
 class: center, middle
@@ -207,8 +207,8 @@ $Variância = 57,5$
 
 # O desvio-padrão (DP) será a raiz quadrada da variância: 
 
-$DP =  \sqrt {Variância} $  
-$DP = 7,58$  
+$DP=\sqrt{Variância}$  
+$DP=7,58$  
 
 
 ---
