@@ -1,6 +1,6 @@
 ---
 title: "Variância e Desvio-padrão"
-author: "[Prof. Steven Dutt Ross](https://steven.metodosquantitativos.com/)"
+date: ' `r icon::fa("user-circle")` [**Prof. Steven Dutt Ross**](https://steven.metodosquantitativos.com/) <br> `r icon::fa("chalkboard-teacher")` [**Atividades**](https://atividades.metodosquantitativos.com/) <br> `r icon::fa("user-graduate")` [**Aulas**](https://aulas.metodosquantitativos.com/) <br> `r icon::fa("book-reader")` [**Livro**](https://livro.metodosquantitativos.com/docs/) <br>' 
 categories: ["Variancia","Desvio-Padrao","UNIRIO"]
 tags: ["Variancia","Desvio-Padrao","UNIRIO"]
 output:
