@@ -1,0 +1,97 @@
+---
+title: "Faça uma pergunta de pesquisa"
+date: ' `r icon::fa("user-circle")` [**Prof. Steven Dutt Ross**](https://steven.metodosquantitativos.com/) <br> `r icon::fa("chalkboard-teacher")` [**Atividades**](https://atividades.metodosquantitativos.com/) <br> `r icon::fa("user-graduate")` [**Aulas**](https://aulas.metodosquantitativos.com/) <br> `r icon::fa("book-reader")` [**Livro**](https://livro.metodosquantitativos.com/docs/) <br>' 
+categories: ["questionamento","pergunta","pesquisa","UNIRIO"]
+tags: ["questionamento","pergunta","pesquisa","UNIRIO"]
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: "16:9"
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(fontawesome)
+```
+
+
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+.myfont {
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 80px;
+}
+
+.preto {
+  color: black;
+  font-size: 30px;
+}
+
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1381B0",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF",
+  title_slide_background_color ="#fff")
+```
+
+
+```{r meta, eval=FALSE, echo=FALSE,message=FALSE,warning=FALSE}
+library(metathis)
+meta() %>%
+  meta_general(
+  description = "Faça uma pergunta de pesquisa.") %>%
+  meta_description("Questão de pesquisa.")
+# class: center, middle
+ 
+```
+
+# Ao utilizar um métodos quantitativos, queremos criar um modelo preditivo **para responder a uma pergunta**.
+
+## Quais perguntas poderíamos formular nas bases de dados   
+### *Titanic*, 
+### *Carros* e 
+### *Questionário Estresse*?
+
+<br>
+<br>
+
+---
+
+## Por exemplo, na base de dados Titanic, podemos desenvolver um modelo para classificar um indivíduo em dois grupos. Se ele sobreviveu (ou não) à catástrofe do navio Titanic com base nas características individuais e da viagem. Esse modelo deverá ser capaz de prever se um passageiro sobreviveu ao Titanic a partir de informações sobre esse passageiro.
+
+## Essa é uma pergunta de classificação, pois estamos fazendo a predição acerca da sobrevivência: um passageiro sobreviveu ou morreu. 
+
+---
+
+
+## Na base de dados *CARROS*, podemos desenvolver um modelo para entender a variável: *preço do carro*. 
+
+## Podemos utilizar um modelo para tentar explicar o preço do carro em função das suas características.  
+
+## Por exemplo, o tipo de combustível do carro (álcool/gasolina) tem impacto no preço do carro? Qual a magnitude da influencia da variável HP (horse-power) no preço do carro?
+
+---
+
+## Na base de dados  *Questionário Estresse* poderiamos perguntar: 
+
+## Qual o impacto das horas de estudo no estresse do aluno(a)?   
+## Uma hora a mais de estudo aumenta em quanto o nível de estresse?
+
+---
+class: middle, bottom
+
+Referência    
+Harrison, Matt *Machine Learning – Guia de Referência Rápida: Trabalhando com Dados Estruturados em Python*. oreilly/novatec.
