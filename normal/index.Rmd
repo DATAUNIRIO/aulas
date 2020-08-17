@@ -1,17 +1,26 @@
 ---
 title: "A distribuição Normal"
-date: ' `r icon::fa("user-circle")` [**Prof. Steven Dutt Ross**](https://steven.metodosquantitativos.com/) <br> `r icon::fa("chalkboard-teacher")` [**Atividades**](https://atividades.metodosquantitativos.com/) <br> `r icon::fa("user-graduate")` [**Aulas**](https://aulas.metodosquantitativos.com/) <br> `r icon::fa("book-reader")` [**Livro**](https://livro.metodosquantitativos.com/docs/) <br>' 
+date: ' `r icon::fa("user-circle")` [**Prof. Steven Dutt Ross**](https://steven.metodosquantitativos.com/) <br><br> `r icon::fa("chalkboard-teacher")` [**Atividades**](https://atividades.metodosquantitativos.com/) <br> `r icon::fa("user-graduate")` [**Aulas**](https://aulas.metodosquantitativos.com/) <br> `r icon::fa("book-reader")` [**Livro**](https://livro.metodosquantitativos.com/docs/) <br>' 
 categories: ["normal","normal padronizada","probabilidade","UNIRIO"]
 tags: ["normal","normal padronizada","probabilidade","UNIRIO"]
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: xaringan-themer.css
+    css: ["css/mmp.css","xaringan-themer.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       ratio: "16:9"
       countIncrementalSlides: false
+---
+layout: true
+  
+<div class="my-footer"><span>
+
+<a href="https://steven.metodosquantitativos.com/">Steven Ross</a> 
+
+</span></div>
+
 ---
 
 ```{r setup, include=FALSE}
@@ -65,10 +74,9 @@ meta() %>%
 # A curva Normal
 
 ### A curva normal é a distribuição de probabilidade mais importante da estatística. 
-
-<br>
-<br>
-
+```{r, fig.cap="<center><b>Normal</b></center>"}
+knitr::include_graphics("img/normal.gif")
+```
 
 ---
 
@@ -107,17 +115,18 @@ distribuicao_normal("#522d80","#F66733", "Open Sans") +
 
 ## Como calcular probabilidades utilizando a tabela da normal?
 
+```{r, echo=TRUE,eval=FALSE, warning=FALSE,comment=NA,message=FALSE}
 
 library(RcmdrMisc)  
 .x <- seq(-3.291, 3.291, length.out=1000)    
 plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)  
-
+```
 
 ]
 
 .panel[.panel-name[Gráfico]
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE,, out.width = "55%"}
 library(RcmdrMisc)
 .x <- seq(-3.291, 3.291, length.out=1000)  
 plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)
@@ -127,14 +136,14 @@ plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",reg
 
 .panel[.panel-name[Tabela]
 
-
+```{r, echo=TRUE,eval=FALSE, warning=FALSE,comment=NA,message=FALSE}
 u=seq(0,3.09,by=0.01)  
 p=pnorm(u)  
 p=p-0.5  
 m=matrix(p,ncol=10,byrow=TRUE)  
 m=round(m,4)  
 DT::datatable(m)  
-
+```
 
 ]
 
@@ -197,6 +206,13 @@ $$ z \sim N(0,1) $$
 
 #### Um gráfico QQ é usado para avaliar visualmente quão próxima uma variável está da distribuição normal. Se os pontos caem  na linha diagonal, então a distribuição dos dados podem ser consideradas perto de uma normal. Para fazer o gráfico QQ no R, podemos utilizar a função *qqnorm()*.
 
+```{r, echo=TRUE,eval=FALSE, warning=FALSE,comment=NA,message=FALSE}
+amostra_normal<-rnorm(100)
+qqnorm(amostra_normal,col="red")
+abline(a=0,b=1)
+
+```
+
 ---
 
 ```{r, warning=FALSE,comment=NA,message=FALSE}
@@ -211,8 +227,9 @@ abline(a=0,b=1)
 # Atividade: avalie quais as variáveis quantitativas da base de dados *CARROS* seguem uma distribuição Normal usando o gráfico QQ.
 
 ---
-class: middle, bottom
 
-Referência    
+
+Referências    
 1. BRUCE, Peter & BRUCE, Andrew **Estatística Prática Para Cientistas De Dados – 50 conceitos essenciais** Alta books, 320 p, 2019.   
-2. **Estatística aplicada à administração**
+2. STEVENSON, Wiliam J. **Estatística aplicada à administração**. 1986.   
+<!--MILZ,Beatriz **Introdução ao pacote xaringan Criando apresentações com R**, 2019. Disponível em: https://beatrizmilz.github.io/IME-27-08-2019/-->

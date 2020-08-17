@@ -6,6 +6,7 @@
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="css\mmp.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -13,10 +14,19 @@
 class: center, middle, inverse, title-slide
 
 # A distribuição Normal
-### <i class="fas  fa-user-circle "></i> <a href="https://steven.metodosquantitativos.com/"><strong>Prof. Steven Dutt Ross</strong></a> <br> <i class="fas  fa-chalkboard-teacher "></i> <a href="https://atividades.metodosquantitativos.com/"><strong>Atividades</strong></a> <br> <i class="fas  fa-user-graduate "></i> <a href="https://aulas.metodosquantitativos.com/"><strong>Aulas</strong></a> <br> <i class="fas  fa-book-reader "></i> <a href="https://livro.metodosquantitativos.com/docs/"><strong>Livro</strong></a> <br>
+### <i class="fas  fa-user-circle "></i> <a href="https://steven.metodosquantitativos.com/"><strong>Prof. Steven Dutt Ross</strong></a> <br><br> <i class="fas  fa-chalkboard-teacher "></i> <a href="https://atividades.metodosquantitativos.com/"><strong>Atividades</strong></a> <br> <i class="fas  fa-user-graduate "></i> <a href="https://aulas.metodosquantitativos.com/"><strong>Aulas</strong></a> <br> <i class="fas  fa-book-reader "></i> <a href="https://livro.metodosquantitativos.com/docs/"><strong>Livro</strong></a> <br>
 
 ---
 
+layout: true
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;
+
+&lt;a href="https://steven.metodosquantitativos.com/"&gt;Steven Ross&lt;/a&gt; 
+
+&lt;/span&gt;&lt;/div&gt;
+
+---
 
 
 
@@ -48,10 +58,10 @@ class: center, middle, inverse, title-slide
 # A curva Normal
 
 ### A curva normal é a distribuição de probabilidade mais importante da estatística. 
-
-&lt;br&gt;
-&lt;br&gt;
-
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="img/normal.gif" alt="&amp;lt;center&amp;gt;&amp;lt;b&amp;gt;Normal&amp;lt;/b&amp;gt;&amp;lt;/center&amp;gt;" width="60%" /&gt;
+&lt;p class="caption"&gt;&lt;center&gt;&lt;b&gt;Normal&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
@@ -68,7 +78,7 @@ class: center, middle, inverse, title-slide
 ---
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="62%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="62%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -79,29 +89,31 @@ class: center, middle, inverse, title-slide
 ## Como calcular probabilidades utilizando a tabela da normal?
 
 
+```r
 library(RcmdrMisc)  
 .x &lt;- seq(-3.291, 3.291, length.out=1000)    
 plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)  
-
+```
 
 ]
 
 .panel[.panel-name[Gráfico]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 .panel[.panel-name[Tabela]
 
 
+```r
 u=seq(0,3.09,by=0.01)  
 p=pnorm(u)  
 p=p-0.5  
 m=matrix(p,ncol=10,byrow=TRUE)  
 m=round(m,4)  
 DT::datatable(m)  
-
+```
 
 ]
 
@@ -155,20 +167,28 @@ $$ z \sim N(0,1) $$
 
 #### Um gráfico QQ é usado para avaliar visualmente quão próxima uma variável está da distribuição normal. Se os pontos caem  na linha diagonal, então a distribuição dos dados podem ser consideradas perto de uma normal. Para fazer o gráfico QQ no R, podemos utilizar a função *qqnorm()*.
 
+
+```r
+amostra_normal&lt;-rnorm(100)
+qqnorm(amostra_normal,col="red")
+abline(a=0,b=1)
+```
+
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Atividade: avalie quais as variáveis quantitativas da base de dados *CARROS* seguem uma distribuição Normal usando o gráfico QQ.
 
 ---
-class: middle, bottom
 
-Referência    
+
+Referências    
 1. BRUCE, Peter &amp; BRUCE, Andrew **Estatística Prática Para Cientistas De Dados – 50 conceitos essenciais** Alta books, 320 p, 2019.   
-2. **Estatística aplicada à administração**
+2. STEVENSON, Wiliam J. **Estatística aplicada à administração**. 1986.   
+&lt;!--MILZ,Beatriz **Introdução ao pacote xaringan Criando apresentações com R**, 2019. Disponível em: https://beatrizmilz.github.io/IME-27-08-2019/--&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
