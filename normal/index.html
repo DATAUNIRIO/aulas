@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>A distribuição Normal</title>
+    <meta charset="utf-8" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# A distribuição Normal
+### <i class="fas  fa-user-circle "></i> <a href="https://steven.metodosquantitativos.com/"><strong>Prof. Steven Dutt Ross</strong></a> <br> <i class="fas  fa-chalkboard-teacher "></i> <a href="https://atividades.metodosquantitativos.com/"><strong>Atividades</strong></a> <br> <i class="fas  fa-user-graduate "></i> <a href="https://aulas.metodosquantitativos.com/"><strong>Aulas</strong></a> <br> <i class="fas  fa-book-reader "></i> <a href="https://livro.metodosquantitativos.com/docs/"><strong>Livro</strong></a> <br>
+
+---
+
+
+
+
+
+&lt;style type="text/css"&gt;
+@import url('https://fonts.googleapis.com/css?family=Chilanka&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&amp;display=swap');
+
+.myfont {
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 80px;
+}
+
+.preto {
+  color: black;
+  font-size: 30px;
+}
+
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+# A curva Normal
+
+### A curva normal é a distribuição de probabilidade mais importante da estatística. 
+
+&lt;br&gt;
+&lt;br&gt;
+
+
+---
+
+## Propriedades da distribuição Normal padrão 
+
+&lt;br&gt; 
+
+1. A área total sob a curva normal é igual a 1.   
+2. A área acumulada para z = 0 é 0,500.    
+3. A maior parte da área sob a curva normal com parâmetros μ e σ se encontram entre μ−3σ e μ+3σ.   
+4. A curva é simétrica em torno do eixo vertical que passa na média μ.  
+5. A curva normal aproxima-se do eixo horizontal assintoticamente conforme nos afastamos da média em qualquer direção.  
+
+---
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="62%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+.panelset[
+.panel[.panel-name[Código]
+
+## Como calcular probabilidades utilizando a tabela da normal?
+
+
+library(RcmdrMisc)  
+.x &lt;- seq(-3.291, 3.291, length.out=1000)    
+plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)  
+
+
+]
+
+.panel[.panel-name[Gráfico]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Tabela]
+
+
+u=seq(0,3.09,by=0.01)  
+p=pnorm(u)  
+p=p-0.5  
+m=matrix(p,ncol=10,byrow=TRUE)  
+m=round(m,4)  
+DT::datatable(m)  
+
+
+]
+
+]
+
+
+
+
+
+---
+
+# Com base nessa tabela, calcule as seguintes probabilidades:
+
+1. P(X&lt;0)  
+2. P(0&lt;X&lt;1)   
+3. P(-2&lt;X&lt;0)  
+4. P(-1&lt;X&lt;2)   
+5. P(0&lt;X&lt;1.33)
+6. P(-0,87&lt;X&lt;1,54)
+7. P(X=1,54) (favor explicar o motivo)
+8. P(x&gt;3)
+9. P(x&gt;-2)
+
+---
+
+#### E se X ~ N(10,15)?  
+#### Qual a probabilidade de X &gt; 10?  
+#### Qual a probabilidade de X &lt;  9?  
+  
+Como podemos calcular probabilidades de uma distribuição normal com qualquer média e qualquer devio-padrão?
+
+
+---
+
+## Qualquer distribuição normal pode ser padronizada. Essa abordagem é dada pela definição de uma nova variável *Z*, chamada de variável aleatória normal padronizada, dada pela função:
+
+$$ z = \frac{x - \mu}{\sigma}$$
+
+onde X é uma variável aleatória com distribuição normal com média μ e variância σ2.
+
+## Definição: 
+
+$$ z \sim N(0,1) $$
+
+---
+
+
+## Gráfico QQ
+
+#### Como descobrir se a sua variável tem uma distribuição Normal?
+
+#### Um gráfico QQ é usado para avaliar visualmente quão próxima uma variável está da distribuição normal. Se os pontos caem  na linha diagonal, então a distribuição dos dados podem ser consideradas perto de uma normal. Para fazer o gráfico QQ no R, podemos utilizar a função *qqnorm()*.
+
+---
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Atividade: avalie quais as variáveis quantitativas da base de dados *CARROS* seguem uma distribuição Normal usando o gráfico QQ.
+
+---
+class: middle, bottom
+
+Referência    
+1. BRUCE, Peter &amp; BRUCE, Andrew **Estatística Prática Para Cientistas De Dados – 50 conceitos essenciais** Alta books, 320 p, 2019.   
+2. **Estatística aplicada à administração**
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
