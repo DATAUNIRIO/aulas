@@ -8,13 +8,18 @@
   href: https://aulas.metodosquantitativos.com/desviopadrao/
   source: https://aulas.metodosquantitativos.com
   showcase: true
-- title: "Aula 3 - Faça uma pergunta de pesquisa"
-  img: https://raw.githubusercontent.com/DATAUNIRIO/aulaunirio/master/img/para_blog/vangogh2.jpg
-  href: https://aulas.metodosquantitativos.com/desviopadrao/
-  source: https://aulas.metodosquantitativos.com
-  showcase: true
-- title: "Aula 4 - Correlação"
+- title: "Aula 3 - Correlação"
   img: https://raw.githubusercontent.com/DATAUNIRIO/aulaunirio/master/img/para_blog/vangogh2.jpg
   href: https://dataunirio.github.io/AulaCorrelacao/
+  source: https://aulas.metodosquantitativos.com
+  showcase: true
+- title: "Aula 4 - Faça uma pergunta de pesquisa"
+  img: https://raw.githubusercontent.com/DATAUNIRIO/aulaunirio/master/img/para_blog/vangogh2.jpg
+  href: https://aulas.metodosquantitativos.com/pergunta/
+  source: https://aulas.metodosquantitativos.com
+  showcase: true
+- title: "Aula 5 - A curva Normal"
+  img: https://raw.githubusercontent.com/DATAUNIRIO/aulaunirio/master/img/para_blog/vangogh2.jpg
+  href: https://aulas.metodosquantitativos.com/normal/
   source: https://aulas.metodosquantitativos.com
   showcase: true
