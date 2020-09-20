@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Gráficos Básicos</title>
+    <meta charset="utf-8" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="css\mmp.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Gráficos Básicos
+### <i class="fas  fa-user-circle "></i> <a href="https://steven.metodosquantitativos.com/"><strong>Prof. Steven Dutt Ross</strong></a> <br><br> <i class="fas  fa-chalkboard-teacher "></i> <a href="https://atividades.metodosquantitativos.com/"><strong>Atividades</strong></a> <br> <i class="fas  fa-user-graduate "></i> <a href="https://aulas.metodosquantitativos.com/"><strong>Aulas</strong></a> <br> <i class="fas  fa-book-reader "></i> <a href="https://livro.metodosquantitativos.com/docs/"><strong>Livro</strong></a> <br>
+
+---
+
+layout: true
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;
+
+&lt;a href="https://steven.metodosquantitativos.com/"&gt;Steven Ross&lt;/a&gt; 
+
+&lt;/span&gt;&lt;/div&gt;
+
+---
+
+
+
+&lt;style type="text/css"&gt;
+@import url('https://fonts.googleapis.com/css?family=Chilanka&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&amp;display=swap');
+
+.myfont {
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 80px;
+}
+
+.preto {
+  color: black;
+  font-size: 30px;
+}
+
+&lt;/style&gt;
+
+
+
+
+
+
+
+# Criação do Banco de dados
+
+
+```r
+## Simulate some data
+## 3 Factor Variables
+Quali1 = as.factor(rep(c("level1", "level2"), 25))
+Quali2 = as.factor(rep(c("levelA", "levelB", "levelC"), 17)[-51])
+Quali3 = as.factor(rep(c("levelI", "levelII", "levelIII", "levelIV"), 13)[-c(51:52)])
+
+## 4 Numeric Vars
+set.seed(123)
+Quanti1 = round(rnorm(n = 50, mean = 1000, sd = 50), digits = 2)  ## Normal distribution
+Quanti2 = round(runif(n = 50, min = 500, max = 1500), digits = 2)  ## Uniform distribution
+Quanti3 = round(rexp(n = 50, rate = 0.001))  ## Exponential distribution
+Quanti4 = 2001:2050
+
+simData = data.frame(Quali1,Quali2,Quali3, Quanti1, Quanti2, Quanti3, Quanti4)
+```
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Quantitativas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Quantitativas
+
+
+```r
+## Gráfico de densidade
+dv1 = density(simData$Quanti1)
+dv2 = density(simData$Quanti2)
+plot(range(dv1$x, dv2$x), range(dv1$y, dv2$y), type = "n", 
+     xlab = "Quanti 1(vermelho) and Quanti 2 (azul)", 
+    ylab = "Density")
+lines(dv1, col = "red")
+lines(dv2, col = "blue")
+```
+]
+]
+
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Categóricas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Categóricas
+
+
+```r
+## Mosaic plot
+plot(table(simData$Quali2, simData$Quali3))
+
+
+## Cores
+COR&lt;-c("#EFF3FF", "#C6DBEF", "#9ECAE1",
+"#6BAED6", "#3182BD", "#08519C")
+plot(table(simData$Quali2, simData$Quali3),col=COR)
+```
+]
+]
+
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Categóricas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Categóricas
+
+
+```r
+## barplots
+tabela = table(simData$Quali2, simData$Quali3)  ## get the cross tab
+COR&lt;-c("#DEEBF7", "#9ECAE1", "#3182BD")
+barplot(tabela, beside = TRUE, legend = levels(unique(simData$Quali2)),col=COR)  ## plot 
+```
+]
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Categóricas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Categóricas
+
+
+```r
+barplot(tabela, legend = levels(unique(simData$Quali2)),col=COR)  ## stacked
+```
+]
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Categóricas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-11-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Categóricas
+
+
+```r
+barplot(prop.table(tabela, 2) * 100, legend = levels(unique(simData$Quali2)))  ## stacked 100%
+```
+]
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Uma categórica e uma quantitativa
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Uma categórica e uma quantitativa
+
+
+```r
+boxplot(simData$Quanti2,simData$Quali2,col="red")
+```
+]
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Duas variáveis: Uma categórica e uma quantitativa
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Duas variáveis: Uma categórica e uma quantitativa
+
+
+```r
+## Mean of one numeric var over levels of one factor var
+meanagg = aggregate(simData$Quanti1, list(simData$Quali3), mean)
+
+dotchart(meanagg$x, labels = meanagg$Group.1,col=c('blue','red'))
+```
+]
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Três variáveis: Categóricas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Três variáveis: Categóricas
+
+
+```r
+#filtro
+simData_subset1&lt;-simData[simData$Quali1=="level1",]
+simData_subset2&lt;-simData[simData$Quali1=="level2",]
+
+# tabela
+tabela1 = table(simData_subset1$Quali2,simData_subset1$Quali3)
+tabela2 = table(simData_subset2$Quali2,simData_subset2$Quali3)
+
+#grafico
+par(mfrow = c(1, 2))
+barplot(tabela1, beside = TRUE, main = "Quali1=level1",col=COR)
+barplot(tabela2, beside = TRUE, main = "Quali1=level2", legend = levels(unique(simData$Quali2)),col=COR)
+par(mfrow = c(1, 1))
+```
+]
+]
+
+---
+
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Três variáveis: Duas categóricas e uma quantitativa
+
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Três variáveis: Duas categóricas e uma quantitativa
+
+
+```r
+## boxplot of NumVar1 over an interaction of 6 levels of the combination of ## FacVar1 and FacVar2
+COR&lt;-c("#D53E4F", "#FC8D59", "#FEE08B",
+"#E6F598", "#99D594", "#3288BD")
+boxplot(Quanti1 ~ interaction(Quali1, Quali2), data = simData,col=COR)
+```
+]
+]
+
+---
+
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Três variáveis: Duas categóricas e uma quantitativa
+
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Três variáveis: Duas categóricas e uma quantitativa
+
+
+```r
+## Mean of 1 Numeric over levels of two factor vars
+meanaggg = aggregate(simData$Quanti1, list(simData$Quali1, simData$Quali2), 
+    mean)
+meanaggg = meanaggg[order(meanaggg$Group.1), ]
+meanaggg$color[meanaggg$Group.2 == "levelA"] = "red"
+meanaggg$color[meanaggg$Group.2 == "levelB"] = "blue"
+meanaggg$color[meanaggg$Group.2 == "levelC"] = "darkgreen"
+
+dotchart(meanaggg$x, labels = meanaggg$Group.2, groups = meanaggg$Group.1, color = meanaggg$color)  ## dotchart
+```
+]
+]
+
+---
+
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Três variáveis: Duas quantitativas e uma categórica
+
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Três variáveis: Duas quantitativas e uma categórica
+
+
+```r
+plot(simData$Quanti1, simData$Quanti2, col = simData$Quali1)
+legend("topright", levels(simData$Quali1), fill = simData$Quali1)
+```
+]
+]
+
+---
+
+
+.panelset[
+.panel[.panel-name[Gráfico]
+
+### Três variáveis: quantitativas
+
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Código]
+
+### Três variáveis: quantitativas
+
+
+```r
+## Bubble plot - scatter plot of NumVar1 and NumVar2 with individual
+radius &lt;- sqrt(simData$Quanti3/pi)
+symbols(simData$Quanti1, simData$Quanti2, circles = radius, inches = 0.25, fg = "white", 
+    bg = "red", main = "Tamanho representa a quanti3")
+```
+]
+]
+
+---
+
+# Referências
+
+https://bl.ocks.org/patilv/raw/7360425/   
+http://www.harding.edu/fmccown/r/    http://www.statmethods.net/
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
