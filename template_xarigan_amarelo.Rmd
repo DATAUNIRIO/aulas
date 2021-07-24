@@ -1,0 +1,90 @@
+---
+title: "Presentation Ninja"
+subtitle: "&#x2694;&#xFE0F; xaringan +<br/>&#x1F60E; xaringanthemer"  
+author: 
+  - "Yihui Xie"
+  - "Garrick Aden-Buie"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: "16:9"
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{css, echo=FALSE}
+li::marker {
+  content: "• ";
+  color: #EFBE43;
+}
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+dark_yellow <- "#EFBE43"
+light_yellow <- "#FDF7E9"
+gray <- "#333333"
+blue <- "#4466B0"
+
+library(xaringanthemer)
+style_duo(
+  # colors
+  primary_color = light_yellow,
+  secondary_color = dark_yellow,
+  header_color = gray,
+  text_color = gray,
+  code_inline_color = colorspace::lighten(gray),
+  text_bold_color = colorspace::lighten(gray),
+  link_color = blue,
+  title_slide_text_color = blue,
+
+  # fonts
+  header_font_google = google_font("Martel", "300", "400"),
+  text_font_google = google_font("Lato"),
+  code_font_google = google_font("Fira Mono")
+)
+
+```
+
+
+
+---
+class: center, middle
+
+# xaringan
+
+### /ʃæ.'riŋ.ɡæn/
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Hello World
+
+Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
+
+```{r eval=FALSE, tidy=FALSE}
+devtools::install_github("yihui/xaringan")
+```
+
+--
+
+You are recommended to use the [RStudio IDE](https://www.rstudio.com/products/rstudio/), but you do not have to.
+
+- Create a new R Markdown document from the menu `File -> New File -> R Markdown -> From Template -> Ninja Presentation`;<sup>1</sup>
+
+--
+
+- Click the `Knit` button to compile it;
+
