@@ -105,9 +105,18 @@ distribuicao_normal("#522d80","#F66733", "Open Sans") +
        y = "Densidade",
        x = "")
 
+
 ```
 
 
+---
+
+# 68,26% até um desvio-padrão   
+
+# 95,44% até dois desvios-padrão    
+
+# 99,74% até três desvios-padrão   
+ 
 ---
 
 .panelset[
@@ -167,13 +176,13 @@ DT::datatable(m)
 # Com base nessa tabela, calcule as seguintes probabilidades:
 
 1. P(X<0)  
-2. P(0<X<1)   
-3. P(-2<X<0)  
-4. P(-1<X<2)   
-5. P(0<X<1.33)
+2. P(0<X<0,11)   
+3. P(-2,2<X<0,12)  
+4. P(-1<X<2,1)   
+5. P(0<X<1,83)
 6. P(-0,87<X<1,54)
 7. P(X=1,54) (favor explicar o motivo)
-8. P(x>3)
+8. P(x>2,5)
 9. P(x>-2)
 
 ---
@@ -217,14 +226,25 @@ abline(a=0,b=1)
 
 ```{r, warning=FALSE,comment=NA,message=FALSE}
 amostra_normal<-rnorm(100)
-qqnorm(amostra_normal,col="red")
+qqnorm(amostra_normal,col="blue", main = "QQ-Plot de uma normal")
 abline(a=0,b=1)
 
 ```
 
+
 ---
 
-# Atividade: avalie quais as variáveis quantitativas da base de dados *CARROS* seguem uma distribuição Normal usando o gráfico QQ.
+```{r, warning=FALSE,comment=NA,message=FALSE}
+amostra_exponencial<- rexp(100,3)
+qqnorm(amostra_exponencial,col="red", main = "QQ-Plot de uma gamma")
+abline(a=0,b=1)
+
+```
+
+
+---
+
+# Atividade: avalie quais as variáveis quantitativas das bases de dados *CARROS* e *Questionario Estresse* seguem uma distribuição Normal usando o gráfico QQ-plot.
 
 ---
 
