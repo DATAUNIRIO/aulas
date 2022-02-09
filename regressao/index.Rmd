@@ -71,6 +71,60 @@ meta() %>%
  
 ```
 
+## Suponha que blablabla
+
+---
+
+.panelset[
+.panel[.panel-name[Carregar]
+
+## Vamos carregar a base de dados. isso pode ser feito com o pacote *readxl*
+
+```{r, echo=TRUE,eval=TRUE, warning=FALSE,comment=NA,message=FALSE}
+
+library(readxl)
+initech <- read_excel("~/GitHub/aulas/regressao/codigo/dados/initech.xlsx")
+
+```
+
+]
+
+.panel[.panel-name[Corrigir]
+
+## Precisamos transformar algumas variáveis qualitativas em quantitativas. isso pode ser feito com a função *as.factor* ou a função *ifelse*.
+
+
+```{r, echo=TRUE,eval=TRUE, message=FALSE, warning=FALSE,, out.width = "55%"}
+
+initech$grau_pagamento <- as.factor(initech$grau_pagamento)   
+initech$sexo <- as.factor(initech$sexo)  
+initech$raca <- as.factor(initech$raca) 
+initech$casado <- as.factor(initech$casado)
+
+
+```
+
+]
+
+.panel[.panel-name[Avaliar]
+
+
+## Precisamos verificar se a transformação foi efetiva
+
+
+```{r, echo=TRUE,eval=TRUE, warning=FALSE,comment=NA,message=FALSE}
+
+str(initech)
+
+```
+
+]
+
+]
+
+
+---
+
 # Modelo linear 
 
 ### Vamos ajustar um modelo linear.
@@ -81,68 +135,173 @@ meta() %>%
 
 ---
 
+## Modelo de regressão linear
+
+vamos definir um modelo de regressão linear,
+
+$$
+Y = f(X) + \epsilon.
+$$
+dessa forma temos:
+
+$$
+Y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+$$
+
+onde $\epsilon_i \sim N(0, \sigma^2)$. 
 
 
-```{r, echo=FALSE,warning=FALSE,message=FALSE,comment=NA, out.width = "62%"}
+---
 
+
+## Modelo de regressão linear
+
+A função $f$ descreve a relação funcional entre as duas variáveis, e o termo $\epsilon$ é usado para contabilizar o erro. Isso indica que se inserirmos um determinado valor de $X$ como entrada, nossa saída será um valor de $Y$, dentro de um certo intervalo de erro. Você pode pensar nisso de várias maneiras:
+
+- Resposta = Previsão + Erro
+- Resposta = Sinal + Ruído
+- Resposta = Modelo + Inexplicável
+- Resposta = Determinístico + Aleatório
+- Resposta = Explicável + Inexplicável
+
+
+---
+
+## Que tipo de função devemos usar para f(X) para os salários?
+
+Poderíamos tentar modelar os dados com uma linha horizontal. Ou seja, o modelo para y (salário)
+não depende do valor de x. (Alguma função f(X)=c.) No gráfico abaixo, vemos que isso não parece fazer um trabalho muito bom. Muitos dos pontos de dados estão muito longe da linha laranja que representa c. Este é um exemplo de underfitting. A solução óbvia é fazer com que a função f(X) dependa de x (anos de trabalho).
+
+---
+
+```{r underfit_plot, echo=FALSE,warning=FALSE,message=FALSE,comment=NA, out.width = "60%"}
+
+plot(salario ~ anos_trabalho, data = initech,
+     xlab = "anos de trabalho",
+     ylab = "Salário na empresa",
+     main = "Salário por anos de experiência",
+     pch  = 20,
+     cex  = 2,
+     col  = "grey")
+underfit_model = lm(salario ~ 1, data = initech)
+abline(underfit_model, lwd = 3, col = "darkorange")
 ```
 
 
 ---
 
-.panelset[
-.panel[.panel-name[Código]
+Também poderíamos tentar modelar os dados com uma função muito "inconstante" que tenta passar pelo maior número possível de pontos dos dados. Isso também não parece funcionar muito bem. Este é um exemplo de **overfitting**. (Observe que neste exemplo nenhuma função passará por todos os pontos, pois existem alguns valores $x$ que possuem vários valores $y$ possíveis nos dados.)
 
-## Como calcular probabilidades utilizando a tabela da normal?
-
-```{r, echo=TRUE,eval=FALSE, warning=FALSE,comment=NA,message=FALSE}
-
-library(RcmdrMisc)  
-.x <- seq(-3.291, 3.291, length.out=1000)    
-plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)  
-```
-
-]
-
-.panel[.panel-name[Gráfico]
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE,, out.width = "55%"}
-library(RcmdrMisc)
-.x <- seq(-3.291, 3.291, length.out=1000)  
-plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)
-```
-
-]
-
-.panel[.panel-name[Tabela]
-
-```{r, echo=TRUE,eval=FALSE, warning=FALSE,comment=NA,message=FALSE}
-u=seq(0,3.09,by=0.01)  
-p=pnorm(u)  
-p=p-0.5  
-m=matrix(p,ncol=10,byrow=TRUE)  
-m=round(m,4)  
-DT::datatable(m)  
-```
-
-]
-
-]
-
-
-
-## Qualquer distribuição normal pode ser padronizada. Essa abordagem é dada pela definição de uma nova variável *Z*, chamada de variável aleatória normal padronizada, dada pela função:
-
-$$ z = \frac{x - \mu}{\sigma}$$
-
-onde X é uma variável aleatória com distribuição normal com média μ e variância σ2.
-
-## Definição: 
-
-$$ z \sim N(0,1) $$
 
 ---
 
+
+```{r overfit_plot, echo=FALSE,warning=FALSE,message=FALSE,comment=NA, out.width = "60%"}
+
+
+overfit_model = lm(salario ~ poly(anos_trabalho, 18),
+                   data = initech)
+x = seq(1, 25, length.out = 200)
+
+plot(salario ~ anos_trabalho, data = initech,
+     xlab = "anos de trabalho",
+     ylab = "Salário na empresa",
+     main = "Salário por anos de experiência",
+     pch  = 20,
+     cex  = 2,
+     col  = "grey")
+lines(x, predict(overfit_model, data.frame(anos_trabalho = x)), lwd = 2, col = "darkorange")
+```
+
+
+---
+
+Por fim, poderíamos tentar modelar os dados com uma linha bem escolhida em vez de um dos dois extremos tentados anteriormente. A linha no gráfico abaixo parece resumir muito bem a relação entre anos de experiência e salário. À medida que temos uma maior experiência de trabalho, aumentamos o nosso salário. Ainda há alguma variação sobre esta linha, mas parece capturar a tendência geral.
+
+
+---
+
+
+```{r goodfit_plot, echo=FALSE,warning=FALSE,message=FALSE,comment=NA, out.width = "60%"}
+
+good_fit_model = lm(salario ~ anos_trabalho, data = initech)
+
+plot(salario ~ anos_trabalho, data = initech,
+     xlab = "anos de trabalho",
+     ylab = "Salário na empresa",
+     main = "Salário por anos de experiência",
+     pch  = 20,
+     cex  = 2,
+     col  = "grey")
+
+abline(good_fit_model, lwd = 3, col = "darkorange")
+
+```
+
+---
+
+Com isso em mente, gostaríamos de restringir nossa escolha de $f(X)$ a funções *lineares* de $X$. Vamos escrever nosso modelo usando $\beta_1$ para a inclinação e $\beta_0$ para a intercepto,
+
+$$
+Y = \beta_0 + \beta_1 X + \epsilon.
+$$
+
+
+---
+
+Os $Y_i$ aleatórios são uma função de $x_i$, então podemos escrever sua média como uma função de $x_i$,
+
+$$
+\text{E}[Y_i \mid X_i = x_i] = \beta_0 + \beta_1 x_i.
+$$
+
+Isso é exibido visualmente na imagem abaixo. Vemos que para qualquer valor $x$, o valor esperado (média) de $Y$ é $\beta_0 + \beta_1 x$. A cada valor de $x$, $Y$ tem a mesma variação $\sigma^2$.
+
+![Modelo de regressão linear simples [Estatísticas introdutórias (Shafer e Zhang), UC Davis Stat Wiki](http://statwiki.ucdavis.edu/Textbook_Maps/General_Statistics/Map%3A_Introductory_Statistics_(Shafer_and_Zhang)/10%3A_Correlation_and_Regression/10.3_Modelling_Linear_Relationships_with_Randomness_Present) target="_blank"}](img/model.jpg)
+
+
+---
+
+Muitas vezes, falamos diretamente sobre os pressupostos . Eles podem ser encurtados de forma inteligente para **LINVI**.
+
+- **L**inear. A relação entre $Y$ e $x$ é linear, na forma $\beta_0 + \beta_1 x$.
+- **I** independente. Os erros $\epsilon$ são independentes.
+- **N**ormal. Os erros, $\epsilon$ são normalmente distribuídos. Esse é o "erro" ao redor da linha segue uma distribuição normal.
+- **V**ariância **I**gual. A cada valor de $x$, a variância de $Y$ é a mesma, $\sigma^2$.
+
+
+---
+
+## Fazendo previsões
+
+Qual seria o valor esperado de salário para uma pessoa com 10 anos de experiência?
+
+```{r previsao, echo=TRUE,warning=FALSE,message=FALSE,comment=NA, out.width = "60%"}
+
+modelo = lm(salario ~ anos_trabalho, data = initech)
+
+```
+
+$$
+Y = 495,10 + 778,30 X.   
+$$
+$$
+Y = 495,10 + 778,30 *10 = 8.278,10             
+$$
+Qual seria o valor esperado de salário para uma pessoa com 20 anos de experiência?
+
+$$
+Y = 495,10 + 778,30 *20 = 16.061,10
+$$
+
+sugiro olhar a função *predict* do R.
+
+```{r previsao2, echo=TRUE,warning=FALSE,message=FALSE,comment=NA, out.width = "60%"}
+predict(modelo,data.frame(anos_trabalho=10))
+```
+
+
+---
 
 ## Gráfico QQ
 

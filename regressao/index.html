@@ -56,70 +56,209 @@ layout: true
 
 
 
-# Modelo linear 
-
-### A curva normal é a distribuição de probabilidade mais importante da estatística. 
-
-
----
-
-
-
-
-
+## Suponha que blablabla
 
 ---
 
 .panelset[
-.panel[.panel-name[Código]
+.panel[.panel-name[Carregar]
 
-## Como calcular probabilidades utilizando a tabela da normal?
+## Vamos carregar a base de dados. isso pode ser feito com o pacote *readxl*
 
 
 ```r
-library(RcmdrMisc)  
-.x &lt;- seq(-3.291, 3.291, length.out=1000)    
-plotDistr(.x, dnorm(.x, mean=0, sd=1), cdf=FALSE, xlab="x", ylab="Densidade",regions=list(c(0, 4)), col=c('#0080C0', '#BEBEBE'), legend=FALSE)  
+library(readxl)
+initech &lt;- read_excel("~/GitHub/aulas/regressao/codigo/dados/initech.xlsx")
 ```
 
 ]
 
-.panel[.panel-name[Gráfico]
+.panel[.panel-name[Corrigir]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+## Precisamos transformar algumas variáveis qualitativas em quantitativas. isso pode ser feito com a função *as.factor* ou a função *ifelse*.
 
-]
-
-.panel[.panel-name[Tabela]
 
 
 ```r
-u=seq(0,3.09,by=0.01)  
-p=pnorm(u)  
-p=p-0.5  
-m=matrix(p,ncol=10,byrow=TRUE)  
-m=round(m,4)  
-DT::datatable(m)  
+initech$grau_pagamento &lt;- as.factor(initech$grau_pagamento)   
+initech$sexo &lt;- as.factor(initech$sexo)  
+initech$raca &lt;- as.factor(initech$raca) 
+initech$casado &lt;- as.factor(initech$casado)
+```
+
+]
+
+.panel[.panel-name[Avaliar]
+
+
+## Precisamos verificar se a transformação foi efetiva
+
+
+
+```r
+str(initech)
+```
+
+```
+tibble [100 x 9] (S3: tbl_df/tbl/data.frame)
+ $ id            : num [1:100] 1 2 3 4 5 6 7 8 9 10 ...
+ $ grau_pagamento: Factor w/ 3 levels "1","2","3": 1 1 2 1 2 1 1 1 2 1 ...
+ $ sexo          : Factor w/ 2 levels "0","1": 2 2 2 1 2 2 1 2 1 2 ...
+ $ raca          : Factor w/ 2 levels "0","1": 2 1 1 2 1 2 1 1 1 2 ...
+ $ casado        : Factor w/ 2 levels "0","1": 1 1 1 1 2 2 2 2 1 2 ...
+ $ idade         : num [1:100] NA 25 23 26 22 23 31 21 31 38 ...
+ $ anos_trabalho : num [1:100] 1 1 1 2 2 2 2 3 3 3 ...
+ $ desempenho    : num [1:100] 2 3 7 3 6 4 3 2 5 3 ...
+ $ salario       : num [1:100] 4150 3262 4432 4004 4615 ...
 ```
 
 ]
 
 ]
 
-
-
-## Qualquer distribuição normal pode ser padronizada. Essa abordagem é dada pela definição de uma nova variável *Z*, chamada de variável aleatória normal padronizada, dada pela função:
-
-$$ z = \frac{x - \mu}{\sigma}$$
-
-onde X é uma variável aleatória com distribuição normal com média μ e variância σ2.
-
-## Definição: 
-
-$$ z \sim N(0,1) $$
 
 ---
 
+# Modelo linear 
+
+### Vamos ajustar um modelo linear.
+
+
+
+---
+
+## Modelo de regressão linear
+
+vamos definir um modelo de regressão linear,
+
+$$
+Y = f(X) + \epsilon.
+$$
+dessa forma temos:
+
+$$
+Y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+$$
+
+onde `\(\epsilon_i \sim N(0, \sigma^2)\)`. 
+
+
+---
+
+
+## Modelo de regressão linear
+
+A função `\(f\)` descreve a relação funcional entre as duas variáveis, e o termo `\(\epsilon\)` é usado para contabilizar o erro. Isso indica que se inserirmos um determinado valor de `\(X\)` como entrada, nossa saída será um valor de `\(Y\)`, dentro de um certo intervalo de erro. Você pode pensar nisso de várias maneiras:
+
+- Resposta = Previsão + Erro
+- Resposta = Sinal + Ruído
+- Resposta = Modelo + Inexplicável
+- Resposta = Determinístico + Aleatório
+- Resposta = Explicável + Inexplicável
+
+
+---
+
+## Que tipo de função devemos usar para f(X) para os salários?
+
+Poderíamos tentar modelar os dados com uma linha horizontal. Ou seja, o modelo para y (salário)
+não depende do valor de x. (Alguma função f(X)=c.) No gráfico abaixo, vemos que isso não parece fazer um trabalho muito bom. Muitos dos pontos de dados estão muito longe da linha laranja que representa c. Este é um exemplo de underfitting. A solução óbvia é fazer com que a função f(X) dependa de x (anos de trabalho).
+
+---
+
+&lt;img src="index_files/figure-html/underfit_plot-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+Também poderíamos tentar modelar os dados com uma função muito "inconstante" que tenta passar pelo maior número possível de pontos dos dados. Isso também não parece funcionar muito bem. Este é um exemplo de **overfitting**. (Observe que neste exemplo nenhuma função passará por todos os pontos, pois existem alguns valores `\(x\)` que possuem vários valores `\(y\)` possíveis nos dados.)
+
+
+---
+
+
+&lt;img src="index_files/figure-html/overfit_plot-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+Por fim, poderíamos tentar modelar os dados com uma linha bem escolhida em vez de um dos dois extremos tentados anteriormente. A linha no gráfico abaixo parece resumir muito bem a relação entre anos de experiência e salário. À medida que temos uma maior experiência de trabalho, aumentamos o nosso salário. Ainda há alguma variação sobre esta linha, mas parece capturar a tendência geral.
+
+
+---
+
+
+&lt;img src="index_files/figure-html/goodfit_plot-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+Com isso em mente, gostaríamos de restringir nossa escolha de `\(f(X)\)` a funções *lineares* de `\(X\)`. Vamos escrever nosso modelo usando `\(\beta_1\)` para a inclinação e `\(\beta_0\)` para a intercepto,
+
+$$
+Y = \beta_0 + \beta_1 X + \epsilon.
+$$
+
+
+---
+
+Os `\(Y_i\)` aleatórios são uma função de `\(x_i\)`, então podemos escrever sua média como uma função de `\(x_i\)`,
+
+$$
+\text{E}[Y_i \mid X_i = x_i] = \beta_0 + \beta_1 x_i.
+$$
+
+Isso é exibido visualmente na imagem abaixo. Vemos que para qualquer valor `\(x\)`, o valor esperado (média) de `\(Y\)` é `\(\beta_0 + \beta_1 x\)`. A cada valor de `\(x\)`, `\(Y\)` tem a mesma variação `\(\sigma^2\)`.
+
+![Modelo de regressão linear simples [Estatísticas introdutórias (Shafer e Zhang), UC Davis Stat Wiki](http://statwiki.ucdavis.edu/Textbook_Maps/General_Statistics/Map%3A_Introductory_Statistics_(Shafer_and_Zhang)/10%3A_Correlation_and_Regression/10.3_Modelling_Linear_Relationships_with_Randomness_Present) target="_blank"}](img/model.jpg)
+
+
+---
+
+Muitas vezes, falamos diretamente sobre os pressupostos . Eles podem ser encurtados de forma inteligente para **LINVI**.
+
+- **L**inear. A relação entre `\(Y\)` e `\(x\)` é linear, na forma `\(\beta_0 + \beta_1 x\)`.
+- **I** independente. Os erros `\(\epsilon\)` são independentes.
+- **N**ormal. Os erros, `\(\epsilon\)` são normalmente distribuídos. Esse é o "erro" ao redor da linha segue uma distribuição normal.
+- **V**ariância **I**gual. A cada valor de `\(x\)`, a variância de `\(Y\)` é a mesma, `\(\sigma^2\)`.
+
+
+---
+
+## Fazendo previsões
+
+Qual seria o valor esperado de salário para uma pessoa com 10 anos de experiência?
+
+
+```r
+modelo = lm(salario ~ anos_trabalho, data = initech)
+```
+
+$$
+Y = 495,10 + 778,30 X.   
+$$
+$$
+Y = 495,10 + 778,30 *10 = 8.278,10             
+$$
+Qual seria o valor esperado de salário para uma pessoa com 20 anos de experiência?
+
+$$
+Y = 495,10 + 778,30 *20 = 16.061,10
+$$
+
+sugiro olhar a função *predict* do R.
+
+
+```r
+predict(modelo,data.frame(anos_trabalho=10))
+```
+
+```
+       1 
+8277.879 
+```
+
+
+---
 
 ## Gráfico QQ
 
@@ -136,12 +275,12 @@ abline(a=0,b=1)
 
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 ---

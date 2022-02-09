@@ -1,7 +1,7 @@
 # https://daviddalpiaz.github.io/appliedstats/
 # Applied Statistics with R
 
-library(readxl)
+
 library(readxl)
 initech <- read_excel("~/GitHub/aulas/regressao/codigo/dados/initech.xlsx")
 
