@@ -1,0 +1,205 @@
+---
+title: "Criação de Mapas no R"
+subtitle: "com geobr, ggplot, plotly"
+author: "[Prof. Steven Dutt-Ross](https://dataunirio.github.io/site_pessoal/)"
+categories: ["R"]
+tags: ["R Markdown", "Mapas"]
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    css: [default, hygge, ninjutsu]
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r, include = F}
+
+# https://www.rstudio.com/blog/building-code-movies-with-flipbookr/
+# https://evamaerey.github.io/flipbooks/flipbook_recipes#1
+#
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+```
+
+
+```{css, eval = TRUE, echo = FALSE}
+.remark-code{line-height: 1.5; font-size: 80%}
+
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+
+code.r.hljs.remark-code{
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+code.r.hljs.remark-code:hover{
+  overflow-x:visible;
+  width: 500px;
+  border-style: solid;
+}
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  # primary_color = "#345865",
+  primary_color = "#B56B6F",
+  secondary_color = "#2c8475",
+  black_color = "#4242424",
+  white_color = "#FFF",
+  base_font_size = "25px",
+  # text_font_family = "Jost",
+  # text_font_url = "https://indestructibletype.com/fonts/Jost.css",
+  header_font_google = google_font("Roboto Slab", "400", "700"),
+  header_font_weight = "400",
+  inverse_header_color = "#eaeaea",
+  title_slide_text_color = "#FFFFFF",
+  text_slide_number_color = "#9a9a9a",
+  text_bold_color = "#f79334",
+  code_inline_color = "#B56B6F",
+  code_highlight_color = "transparent",
+  link_color = "#2c8475",
+  table_row_even_background_color = lighten_color("#345865", 0.9),
+  extra_fonts = list(
+    "https://indestructibletype.com/fonts/Jost.css",
+    google_font("Amatic SC", "400")
+  ),
+  colors = c(
+    green = "#31b09e",
+    "green-dark" = "#2c8475",
+    highlight = "#87f9bb",
+    purple = "#887ba3",
+    pink = "#B56B6F",
+    orange = "#f79334",
+    red = "#dc322f",
+    `blue-dark` = "#002b36",
+    `text-dark` = "#202020",
+    `text-darkish` = "#424242",
+    `text-mild` = "#606060",
+    `text-light` = "#9a9a9a",
+    `text-lightest` = "#eaeaea"
+  ),
+  extra_css = list(
+    ".remark-slide-content h3" = list(
+      "margin-bottom" = 0, 
+      "margin-top" = 0
+    ),
+    ".smallish, .smallish .remark-code-line" = list(`font-size` = "0.9em")
+  )
+)
+#library(xaringanExtra)
+#xaringanExtra::use_xaringan_extra(c("animate_css")
+#xaringanExtra::use_extra_styles()
+```
+
+# Hi!
+
+--
+
+This 'minimal flipbook' template has a couple of classic examples to get you building your first flipbooks!
+
+--
+
+flipbooks are code-movies.  The frames of the movies are slides. Here we use the R package {xaringan} to create a remark.js slideshow. 
+
+--
+
+Slide breaks are indicated with `---` (be careful trailing white space is not allowed)
+
+--
+
+flipbookr's `chunk_reveal()` disassembles a single code chunk and creates the "build" of multiple partial-code chunks on different slides (the --- is automatically generated for you too).  
+
+--
+
+We use `chunk_reveal()` it 'inline', not in a code chunk. 
+
+--
+
+Let's start!
+
+
+
+---
+class: inverse, middle, center
+
+
+# First up: classic flipbook, using defaults to walk through code pipeline
+
+
+
+```{r meus_dados, include = FALSE}
+
+url_do_arquivo <- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+url_do_arquivo
+download.file(url_do_arquivo,"BasesEstados.xlsx",mode="wb") 
+library(readxl)
+dados_brutos <- read_excel("BasesEstados.xlsx")
+head(dados_brutos)
+
+```
+
+`r chunk_reveal("meus_dados", title = "### Carregar a base de dados")`
+
+
+---
+class: inverse, center, middle
+
+# Next up:  refer to same chunk, but use user defined breakpoints, and display output only
+
+
+
+
+---
+class: inverse, center, middle
+
+# Next up:  cycle through different lines of code
+
+
+
+```{r meu_mapa, eval = T, echo = T,message=FALSE,comment=NA}
+
+library(geobr)
+mapa_estados <- read_state()
+
+```
+
+
+---
+class: inverse, center, middle
+
+
+```{r meu_mapa2, eval = F, echo = F}
+
+head(mapa_estados)
+
+```
+
+
+`r chunk_reveal("meu_mapa2", title = "### Inspecionar o mapa")`
+
+
+
+
+---
+
+# Notes: 
+
+- This minimal flipbook assumes you are online when you build and view.  It is going to find the most recent remark.js info online.
+
+- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
+

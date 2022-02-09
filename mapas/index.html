@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Criação de Mapas no R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Steven Dutt-Ross" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Criação de Mapas no R
+## com geobr, ggplot, plotly
+### <a href="https://dataunirio.github.io/site_pessoal/">Prof. Steven Dutt-Ross</a>
+
+---
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+.remark-code{line-height: 1.5; font-size: 80%}
+
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+
+code.r.hljs.remark-code{
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+code.r.hljs.remark-code:hover{
+  overflow-x:visible;
+  width: 500px;
+  border-style: solid;
+}
+&lt;/style&gt;
+
+
+
+# Hi!
+
+--
+
+This 'minimal flipbook' template has a couple of classic examples to get you building your first flipbooks!
+
+--
+
+flipbooks are code-movies.  The frames of the movies are slides. Here we use the R package {xaringan} to create a remark.js slideshow. 
+
+--
+
+Slide breaks are indicated with `---` (be careful trailing white space is not allowed)
+
+--
+
+flipbookr's `chunk_reveal()` disassembles a single code chunk and creates the "build" of multiple partial-code chunks on different slides (the --- is automatically generated for you too).  
+
+--
+
+We use `chunk_reveal()` it 'inline', not in a code chunk. 
+
+--
+
+Let's start!
+
+
+
+---
+class: inverse, middle, center
+
+
+# First up: classic flipbook, using defaults to walk through code pipeline
+
+
+
+
+
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+*url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+]
+
+---
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+*url_do_arquivo
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+```
+[1] "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+]
+
+---
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+url_do_arquivo
+*download.file(url_do_arquivo,"BasesEstados.xlsx",mode="wb")
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+```
+[1] "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+]
+
+---
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+url_do_arquivo
+download.file(url_do_arquivo,"BasesEstados.xlsx",mode="wb")
+*library(readxl)
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+```
+[1] "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+]
+
+---
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+url_do_arquivo
+download.file(url_do_arquivo,"BasesEstados.xlsx",mode="wb")
+library(readxl)
+*dados_brutos &lt;- read_excel("BasesEstados.xlsx")
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+```
+[1] "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+]
+
+---
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+url_do_arquivo
+download.file(url_do_arquivo,"BasesEstados.xlsx",mode="wb")
+library(readxl)
+dados_brutos &lt;- read_excel("BasesEstados.xlsx")
+*head(dados_brutos)
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+```
+[1] "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+
+```
+# A tibble: 6 x 35
+  S     Sigla Codigo Estado   Região CodigoReg    PIB  Gini  Agua Banheiro  Lixo
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+1 AC    AC    12     Acre     Norte  N         9.63e6  0.63  86.5     47.4  93.6
+2 AL    AL    27     Alagoas  Norde~ NE        2.95e7  0.63  77.6     75.6  96.2
+3 AM    AM    13     Amazonas Norte  N         6.41e7  0.65  77.3     62.2  93.0
+4 AP    AP    16     Amapa    Norte  N         1.04e7  0.6   91.4     66.4  96.4
+5 BA    BA    29     Bahia    Norde~ NE        1.68e8  0.62  85.7     77.6  95.4
+6 CE    CE    23     Ceara    Norde~ NE        9.01e7  0.61  86.1     76.3  93.6
+# ... with 24 more variables: Energia &lt;dbl&gt;, Densidade &lt;dbl&gt;,
+#   Esperancadevida &lt;dbl&gt;, Populacao &lt;dbl&gt;, Mortalidade_infantil &lt;dbl&gt;,
+#   Prob_sobrevivencia &lt;dbl&gt;, IDH &lt;dbl&gt;, IDH_Renda &lt;dbl&gt;,
+#   IDH_Longevidade &lt;dbl&gt;, IDH_Educacao &lt;dbl&gt;, Probab_sobrev60 &lt;dbl&gt;,
+#   TFT &lt;dbl&gt;, Taxa_envelhecimento &lt;dbl&gt;, Taxa_analfabetismo &lt;dbl&gt;,
+#   frequencia_liquida_EM &lt;dbl&gt;, Expectativa_anos_de_estudo &lt;dbl&gt;,
+#   frequencia_liquida_Superior &lt;dbl&gt;, perc_com_2_anos_de_de_atraso &lt;dbl&gt;, ...
+```
+]
+
+---
+count: false
+ 
+### Carregar a base de dados
+.panel1-meus_dados-auto[
+
+```r
+url_do_arquivo &lt;- "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+url_do_arquivo
+download.file(url_do_arquivo,"BasesEstados.xlsx",mode="wb")
+library(readxl)
+dados_brutos &lt;- read_excel("BasesEstados.xlsx")
+head(dados_brutos)
+```
+]
+ 
+.panel2-meus_dados-auto[
+
+```
+[1] "https://github.com/DATAUNIRIO/Base_de_dados/raw/master/BasesEstados.xlsx"
+```
+
+```
+# A tibble: 6 x 35
+  S     Sigla Codigo Estado   Região CodigoReg    PIB  Gini  Agua Banheiro  Lixo
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+1 AC    AC    12     Acre     Norte  N         9.63e6  0.63  86.5     47.4  93.6
+2 AL    AL    27     Alagoas  Norde~ NE        2.95e7  0.63  77.6     75.6  96.2
+3 AM    AM    13     Amazonas Norte  N         6.41e7  0.65  77.3     62.2  93.0
+4 AP    AP    16     Amapa    Norte  N         1.04e7  0.6   91.4     66.4  96.4
+5 BA    BA    29     Bahia    Norde~ NE        1.68e8  0.62  85.7     77.6  95.4
+6 CE    CE    23     Ceara    Norde~ NE        9.01e7  0.61  86.1     76.3  93.6
+# ... with 24 more variables: Energia &lt;dbl&gt;, Densidade &lt;dbl&gt;,
+#   Esperancadevida &lt;dbl&gt;, Populacao &lt;dbl&gt;, Mortalidade_infantil &lt;dbl&gt;,
+#   Prob_sobrevivencia &lt;dbl&gt;, IDH &lt;dbl&gt;, IDH_Renda &lt;dbl&gt;,
+#   IDH_Longevidade &lt;dbl&gt;, IDH_Educacao &lt;dbl&gt;, Probab_sobrev60 &lt;dbl&gt;,
+#   TFT &lt;dbl&gt;, Taxa_envelhecimento &lt;dbl&gt;, Taxa_analfabetismo &lt;dbl&gt;,
+#   frequencia_liquida_EM &lt;dbl&gt;, Expectativa_anos_de_estudo &lt;dbl&gt;,
+#   frequencia_liquida_Superior &lt;dbl&gt;, perc_com_2_anos_de_de_atraso &lt;dbl&gt;, ...
+```
+]
+
+&lt;style&gt;
+.panel1-meus_dados-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-meus_dados-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-meus_dados-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+---
+class: inverse, center, middle
+
+# Next up:  refer to same chunk, but use user defined breakpoints, and display output only
+
+
+
+
+---
+class: inverse, center, middle
+
+# Next up:  cycle through different lines of code
+
+
+
+
+```r
+library(geobr)
+mapa_estados &lt;- read_state()
+```
+
+```
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |===                                                                   |   4%
+  |                                                                            
+  |=====                                                                 |   7%
+  |                                                                            
+  |========                                                              |  11%
+  |                                                                            
+  |==========                                                            |  15%
+  |                                                                            
+  |=============                                                         |  19%
+  |                                                                            
+  |================                                                      |  22%
+  |                                                                            
+  |==================                                                    |  26%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |==========================                                            |  37%
+  |                                                                            
+  |=============================                                         |  41%
+  |                                                                            
+  |===============================                                       |  44%
+  |                                                                            
+  |==================================                                    |  48%
+  |                                                                            
+  |====================================                                  |  52%
+  |                                                                            
+  |=======================================                               |  56%
+  |                                                                            
+  |=========================================                             |  59%
+  |                                                                            
+  |============================================                          |  63%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |====================================================                  |  74%
+  |                                                                            
+  |======================================================                |  78%
+  |                                                                            
+  |=========================================================             |  81%
+  |                                                                            
+  |============================================================          |  85%
+  |                                                                            
+  |==============================================================        |  89%
+  |                                                                            
+  |=================================================================     |  93%
+  |                                                                            
+  |===================================================================   |  96%
+  |                                                                            
+  |======================================================================| 100%
+```
+
+
+---
+class: inverse, center, middle
+
+
+
+
+
+count: false
+ 
+### Inspecionar o mapa
+.panel1-meu_mapa2-auto[
+
+```r
+*head(mapa_estados)
+```
+]
+ 
+.panel2-meu_mapa2-auto[
+
+```
+Simple feature collection with 6 features and 5 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -73.99045 ymin: -13.6937 xmax: -46.06095 ymax: 5.271841
+Geodetic CRS:  SIRGAS 2000
+  code_state abbrev_state name_state code_region name_region
+1         11           RO   Rondônia           1       Norte
+2         12           AC       Acre           1       Norte
+3         13           AM   Amazonas           1       Norte
+4         14           RR    Roraima           1       Norte
+5         15           PA       Pará           1       Norte
+6         16           AP      Amapá           1       Norte
+                            geom
+1 MULTIPOLYGON (((-63.32721 -...
+2 MULTIPOLYGON (((-73.18253 -...
+3 MULTIPOLYGON (((-67.32609 2...
+4 MULTIPOLYGON (((-60.20051 5...
+5 MULTIPOLYGON (((-54.95431 2...
+6 MULTIPOLYGON (((-51.1797 4....
+```
+]
+
+---
+count: false
+ 
+### Inspecionar o mapa
+.panel1-meu_mapa2-auto[
+
+```r
+head(mapa_estados)
+```
+]
+ 
+.panel2-meu_mapa2-auto[
+
+```
+Simple feature collection with 6 features and 5 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -73.99045 ymin: -13.6937 xmax: -46.06095 ymax: 5.271841
+Geodetic CRS:  SIRGAS 2000
+  code_state abbrev_state name_state code_region name_region
+1         11           RO   Rondônia           1       Norte
+2         12           AC       Acre           1       Norte
+3         13           AM   Amazonas           1       Norte
+4         14           RR    Roraima           1       Norte
+5         15           PA       Pará           1       Norte
+6         16           AP      Amapá           1       Norte
+                            geom
+1 MULTIPOLYGON (((-63.32721 -...
+2 MULTIPOLYGON (((-73.18253 -...
+3 MULTIPOLYGON (((-67.32609 2...
+4 MULTIPOLYGON (((-60.20051 5...
+5 MULTIPOLYGON (((-54.95431 2...
+6 MULTIPOLYGON (((-51.1797 4....
+```
+]
+
+&lt;style&gt;
+.panel1-meu_mapa2-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-meu_mapa2-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-meu_mapa2-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
+---
+
+# Notes: 
+
+- This minimal flipbook assumes you are online when you build and view.  It is going to find the most recent remark.js info online.
+
+- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
