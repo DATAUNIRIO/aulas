@@ -1,4 +1,5 @@
 # https://daviddalpiaz.github.io/appliedstats/
+# https://github.com/DATAUNIRIO/appliedstats/blob/master/slr.Rmd
 # Applied Statistics with R
 
 
