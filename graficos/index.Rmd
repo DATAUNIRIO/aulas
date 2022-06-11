@@ -1,6 +1,7 @@
 ---
 title: "Gráficos Básicos"
-date: ' `r icon::fa("user-circle")` [**Prof. Steven Dutt Ross**](https://steven.metodosquantitativos.com/) <br><br> `r icon::fa("chalkboard-teacher")` [**Atividades**](https://atividades.metodosquantitativos.com/) <br> `r icon::fa("user-graduate")` [**Aulas**](https://aulas.metodosquantitativos.com/) <br> `r icon::fa("book-reader")` [**Livro**](https://livro.metodosquantitativos.com/docs/) <br>' 
+date: '``r icons::fontawesome("user-circle")`` [**Prof. Steven Dutt Ross**](https://steven.metodosquantitativos.com/) <br><br>
+``r icons::fontawesome("chalkboard-teacher")`` [atividades](https://atividades.metodosquantitativos.com/)  <br> ``r icons::fontawesome("user-graduate")`` [aulas](https://aulas.metodosquantitativos.com/)  <br> ``r icons::fontawesome("book-reader")`` [livro](https://livro.metodosquantitativos.com/docs/)  <br> ' 
 categories: ["graficos","UNIRIO"]
 tags: ["graficos","UNIRIO"]
 output:
@@ -463,10 +464,61 @@ symbols(simData$Quanti1, simData$Quanti2, circles = radius, inches = 0.25, fg = 
 
 ---
 
+.panelset[
+.panel[.panel-name[Gráfico]
+
+```{r, echo=FALSE}
+# remotes::install_github("thomas-neitmann/ggcharts", upgrade = "never")
+library(dplyr)
+library(ggcharts)
+
+biomedicalrevenue %>%
+  filter(year %in% c(2012, 2014, 2016, 2018)) %>%
+  bar_chart(company,revenue,facet = year,top_n = 12,highlight = "Bayer")
+
+#ggcharts_set_theme("theme_hermit")
+#bar_chart(data = diamonds, x = cut)
+# https://gist.github.com/DATAUNIRIO/f8b69d3f52e95ac89c29796d84606bf6#file-ggcharts_ggplot2_facil-r
+
+```
+
+]
+
+.panel[.panel-name[Código]
+
+```{r, eval=FALSE}
+# remotes::install_github("thomas-neitmann/ggcharts", upgrade = "never")
+library(dplyr)
+library(ggcharts)
+
+biomedicalrevenue %>%
+  filter(year %in% c(2012, 2014, 2016, 2018)) %>%
+  bar_chart(company,revenue,facet = year,top_n = 12,highlight = "Bayer")
+
+#ggcharts_set_theme("theme_hermit")
+#bar_chart(data = diamonds, x = cut)
+
+# Outros gráficos
+# https://gist.github.com/DATAUNIRIO/f8b69d3f52e95ac89c29796d84606bf6#file-ggcharts_ggplot2_facil-r
+
+```
+
+
+Entre neste site    
+[https://thomas-neitmann.github.io/ggcharts/index.html](https://thomas-neitmann.github.io/ggcharts/index.html)
+
+]
+]
+
+
+---
+
 # Referências
 
-https://bl.ocks.org/patilv/raw/7360425/   
-http://www.harding.edu/fmccown/r/    http://www.statmethods.net/   
+https://thomas-neitmann.github.io/ggcharts/index.html    
+https://bl.ocks.org/patilv/raw/7360425/     
+http://www.harding.edu/fmccown/r/     
+http://www.statmethods.net/   
 
 
 
