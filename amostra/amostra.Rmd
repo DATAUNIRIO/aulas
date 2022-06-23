@@ -1,5 +1,5 @@
 ---
-title: "Amostra"
+title: "Planejamento Amostral"
 author: "<img src = 'http://www.unirio.br/comunicacaosocial/imagens/logos-unirio/LOGOHORIZONTALBRANCA.png' width = '20%'>"
 categories: ["Amostra","UNIRIO"]
 tags: ["Amostra","UNIRIO"]
