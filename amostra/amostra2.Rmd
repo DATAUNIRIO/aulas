@@ -1,0 +1,134 @@
+---
+title: "Amostra"
+author: "<img src = 'http://www.unirio.br/comunicacaosocial/imagens/logos-unirio/LOGOHORIZONTALBRANCA.png' width = '20%'>"
+categories: ["Amostra","UNIRIO"]
+tags: ["Amostra","UNIRIO"]
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css  
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+#knit: pagedown::chrome_print
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide1.PNG)
+background-size: cover
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(comment = "#>", echo=TRUE, fig.align='center')
+
+library(xaringanthemer)
+style_mono_light(base_color = "#23395b",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+#library(xaringanExtra)
+#library(knitr)
+#style_mono_accent_inverse(base_color = #"#1e666b",header_color ="#3C989E", #title_slide_background_image ="img/capa.png")
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#0051BA", location = "top")
+```
+
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide31.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide32.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide33.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide34.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide35.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide36.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide37.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide38.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide39.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide40.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide41.PNG)
+background-size: cover
+
+---
+class: center, middle
+
+background-image: url(https://raw.githubusercontent.com/DATAUNIRIO/CSS/master/img/amostra/Slide42.PNG)
+background-size: cover
+
+
+---
+class: inverse, middle, center
+background-image: url(https://media.giphy.com/media/xUPOqo6E1XvWXwlCyQ/giphy.gif)
+background-size: contain
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+**[Se você quiser, visite o meu site](https://steven.metodosquantitativos.com/)**  
+
+[https://steven.metodosquantitativos.com/](https://steven.metodosquantitativos.com/)
+
+
