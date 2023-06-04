@@ -19,7 +19,7 @@ execute:
 ## Um teste de hipótese é a regra que especifica se deve “aceitar”(não rejeitar) ou rejeitar uma alegação sobre uma população de acordo com as provas fornecidas por uma amostra de dados.
 
 \
-
+<!--
 :::: columns 
 ::: {.column width="50%"}
 
@@ -53,6 +53,7 @@ execute:
 
 :::
 ::::
+-->
 
 # Construção de testes {background-color="#e8f4f8"}
 
