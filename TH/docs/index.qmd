@@ -1,0 +1,253 @@
+---
+title: "Teste de Hipóteses"
+author: "Steven Ross"
+format: 
+  revealjs:
+    theme: resources/scss/theme.scss
+    footer: "[aulas.metodosquantitativos.com/](https://aulas.metodosquantitativos.com/)"
+    title-slide-attributes:
+      data-background-image: resources/images/cover.gif
+      data-background-size: cover
+    width: 1600
+    height: 900
+execute: 
+  echo: false
+---
+
+# DEFINIÇÃO {background-color="#e8f4f8"}
+
+## Um teste de hipótese é a regra que especifica se deve “aceitar”(não rejeitar) ou rejeitar uma alegação sobre uma população de acordo com as provas fornecidas por uma amostra de dados.
+
+\
+
+:::: columns 
+::: {.column width="50%"}
+
+### Simples
+
+- Embarcado
+- Sem dependências
+- APIs para R, Python, Julia, etc
+
+\
+
+### Rápido
+
+- Optimizado para análises
+- Processamento de consultas paralelas
+
+:::
+::: {.column width="50%"}
+
+### Rico em recursos
+
+- Amplo suporte ao SQL
+- Consulta direta em arquivos parquet e CSV
+
+\
+
+### Gratuíto
+
+- Código aberto e gratuito
+- Licença MIT
+
+:::
+::::
+
+# Construção de testes {background-color="#e8f4f8"}
+
+## Os estágios para construção do teste de hipóteses são:   
+- Definir a Hipótese Nula e a hipótese alternativa   
+- Escolher o teste adequado  
+- Escolher o nível de significância  
+- Calcular o valor da estatística de teste com base em uma amostra de tamanho n extraída aleatoriamente da população   
+- Rejeitar H0 se o valor calculado estiver na região crítica. Não rejeitar caso contrário. 
+
+
+\
+
+## P-valor {background-color="#e8f4f8"}
+
+### DEFINIÇÃO
+
+O p-valor é a probabilidade de que a estatística de teste seja igual ou mais extrema que o valor observado. 
+O p-valor é calculado partindo da suposição que H0 é verdadeira.
+
+## P-valor {background-color="#e8f4f8"}
+
+### INTERPRETAÇÃO
+
+Um p-valor pequeno significa  que os dados observados seriam incomuns, se H0 fosse verdadeira.
+
+#### Quanto menor o p-valor, mais forte a evidência contra H0.
+
+# Moeda viciada?
+
+Fiz o lançamento de uma moeda 1.000 vezes. Saiu 541 caras. Essa moeda é viciada?
+
+Se tivesse 500 caras eu saberia que ela é honesta
+Se tivesse 1.000 caras (ou zero caras) eu saberia que ela é viciada.
+
+Mas e o 541?
+
+# Uma pergunta: 
+
+É razoável uma moeda honesta gerar 541 caras?
+
+
+
+
+# Primeiro tenho que formular as hipóteses:
+H0: A moeda é honesta  
+H1: A moeda é viciada  
+
+# Primeiro tenho que formular as hipóteses:
+H0: A moeda é honesta  
+H1: A moeda é viciada     
+**Re-escrevendo...**       
+**H0: p = 50%**    
+**H1: p ≠ 50%**   
+
+
+
+# Código R
+
+```
+numero_de_caras <- 470:610
+plot(numero_de_caras, dbinom(numero_de_caras, size=1000, prob=.541),type='h')
+```
+
+## Gráfico 
+
+```{r}
+numero_de_caras <- 470:610
+plot(numero_de_caras, dbinom(numero_de_caras, size=1000, prob=.541),type='h')
+```
+
+# Conclusão 
+
+É improvável que em 1.000 lançamentos de uma moeda honesta se obtenha 541 caras.  
+   
+E se fosse 520 caras? 
+
+
+```
+prop.test(541, 1000, p = 0.5)
+```
+
+# Graficamente
+
+![](resources/images/normal.png)
+
+
+# Mas o que é esse alpha?  {background-color="#e8f4f8"}
+
+# Alpha
+
+**Em direito penal, a maioria das instituições segue a norma:**  
+**– “Inocente, até prova do contrário”**    
+**A promotoria precisa comprovar a hipótese de que a pessoa acusada é culpada**   
+**Cabe à promotoria demonstrar a culpa**     
+**O júri começa com a “hipótese nula” de inocência**    
+
+# Alpha
+
+**Em estatística aplicada, no lugar da “presunção de inocência” a norma é: “presunção de não diferença”**     
+
+**Hipótese do avaliador/pesquisador: não há diferença**  
+
+**A evidência deve demonstrar o contrário**    
+
+# Erro do tipo 1 e Erro do tipo 2 
+
+![](resources/images/erro1e2.png)
+ 
+     
+# Erro do tipo 1 e Erro do tipo 2
+
+![](resources/images/erro1e2_2.png)
+
+# Erro do tipo 1 e Erro do tipo 2
+
+![](resources/images/erro1e2_3.png)
+
+# Erro do tipo 1 e Erro do tipo 2
+
+Erro do tipo 1 consiste em afirmar que existe diferença entre as médias quando na realidade, elas são iguais. 
+
+O erro do tipo 2 consiste em afirmar que as duas médias são iguais quando elas são diferentes.
+
+# Erro do tipo 1 e Erro do tipo 2
+
+Para determinado tamanho de amostra, uma redução de alpha corresponde um aumento de beta;
+
+O único meio de reduzir alpha e beta simultaneamente é aumentando a amostra;
+
+# Teste não paramétrico
+
+Um estudo classificou  1.469 idosos segundo dois critérios: mortalidade e hábito de fumar. Duas classes  foram consideradas quanto ao hábito de fumar  (fumantes e não fumantes), enquanto que com respeito a mortalidade: idosos ainda vivos e idosos que morreram no período de 6 anos após o início da experiência. A tabela de contingência construída foi a seguinte:
+
+```{r}
+M <- as.table(rbind(c(117, 54), c(950, 348)))
+### Rótulos para tabela
+dimnames(M) <- list(mortalidade = c("Vivos","Mortos"),
+                    hábito_fumar = c("Não fumante","Fumante"))
+```
+
+# Hipóteses
+
+**H0**: Assume que não há associação entre as duas variáveis   
+**H1**: Assume que existe uma associação entre as duas variáveis.
+
+
+## Sob a hipótese de independência, as frequências esperadas são:
+
+![](resources/images/qui-quadrado.png)
+
+## Fórmula
+
+A estatística   
+
+$$Q=\sum\frac{(f_o-f_e)^2}{f_e}$$
+  
+tem aproximadamente  distribuição qui-quadrado com (k-1)(C-1) graus de liberdade
+
+## Logo
+
+$$Q=\frac{(117-124)^2}{124}+\frac{(54-46,79)^2}{46,79}+\frac{(950-942,79)^2}{942,79}+\frac{(348-355,20)^2}{355,20}$$   
+   
+$$Q= 0,41739+1,111+0,5513+0,14594 $$
+$$Q=1,72946$$
+
+Como
+
+$$ Q_{observado} = 1,72946 < Q_{1;0,95} = 3,84$$  
+
+então não podemos rejeitar a hipótese nula de que as variáveis são independentes.    
+
+
+# Nachmias & Nachmias (2000)
+
+- Hipóteses devem ser claras: o pesquisador deve definir todas as variáveis conceitualmente e operacionalização destas;
+- Hipóteses são específicas: o pesquisador aponta a relação esperada entre as variáveis em termos da direção (positiva e negativa) e pressupostos do teste;
+- Hipóteses são testadas por métodos disponíveis: avaliação se a hipótese depende da existência de métodos para testá-la.
+
+
+
+<!--
+:::: columns
+::: {.column width="40%"}
+```
+# A tibble: 5 × 2
+  name                  value
+  <chr>             <num:.5!>
+1 pickup_longitude  -73.98215
+2 pickup_latitude    40.76794
+3 dropoff_longitude -73.96463
+4 dropoff_latitude   40.76560
+5 aerial_distance     1.50216
+```
+:::
+::: {.column width="60%"}
+
+-->
