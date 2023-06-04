@@ -14,8 +14,8 @@
 
 <title>Aulas de Estatística</title>
 
-<script src="index_files/header-attrs-2.7/header-attrs.js"></script>
-<script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+<script src="index_files/header-attrs-2.18/header-attrs.js"></script>
+<script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="index_files/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="index_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -73,6 +73,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -94,6 +95,9 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
 pre code {
   padding: 0;
 }
@@ -113,8 +117,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -122,16 +126,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -235,12 +232,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -251,7 +248,9 @@ div.tocify {
 
 <h1 class="title toc-ignore">Aulas de Estatística</h1>
 <h3 class="subtitle"><strong>Conheça os seus dados</strong></h3>
-<h4 class="author"><a href="https://steven.metodosquantitativos.com/">Prof. Steven Dutt-Ross</a></h4>
+<h4 class="author"><a
+href="https://steven.metodosquantitativos.com/">Prof. Steven
+Dutt-Ross</a></h4>
 
 </div>
 
@@ -288,7 +287,8 @@ a:visited {
 </style>
 </head>
 <p><br></p>
-<div id="aqui-você-vai-encontrar-as-aulas-de-estatística" class="section level1">
+<div id="aqui-você-vai-encontrar-as-aulas-de-estatística"
+class="section level1">
 <h1>Aqui você vai encontrar as aulas de Estatística</h1>
 <div class="row">
 <div class="col-sm-4">
@@ -332,14 +332,22 @@ a:visited {
 </div>
 <div class="row">
 <div class="col-sm-4">
+<a class="thumbnail" title="Testes de Hipóteses" href="https://blog.metodosquantitativos.com/th/index.html">
+<img src="https://raw.githubusercontent.com/DATAUNIRIO/aulaunirio/master/img/para_blog/vangogh2.jpg"/>
+<div class="caption">Testes de Hipóteses</div>
+</a>
+</div>
+<div class="col-sm-4">
 <a class="thumbnail" title="Tipos de Testes" href="https://blog.metodosquantitativos.com/teste/Index.html">
 <img src="https://raw.githubusercontent.com/DATAUNIRIO/aulaunirio/master/img/para_blog/vangogh2.jpg"/>
 <div class="caption">Tipos de Testes</div>
 </a>
 </div>
 </div>
-<div id="inteligência-estatística-conheça-os-seus-dados" class="section level3 verde">
-<h3><strong>Inteligência Estatística: conheça os seus dados</strong></h3>
+<div id="inteligência-estatística-conheça-os-seus-dados"
+class="section level3 verde">
+<h3><strong>Inteligência Estatística: conheça os seus
+dados</strong></h3>
 </div>
 <p><br></p>
 </div>
@@ -382,6 +390,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
