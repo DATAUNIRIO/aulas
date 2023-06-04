@@ -67,6 +67,43 @@ execute:
 
 \
 
+## Visualizando {background-color="#e8f4f8"}
+
+
+```{r,echo=FALSE}
+
+p <- 0.025
+tail_low <- seq(-4, qnorm(p), 0.01)
+df_tl <- data.frame(x=c(tail_low,qnorm(p)), y =c(dnorm(tail_low),0))
+tail_high <- seq(qnorm(1-p), 4, 0.01)
+df_th <- data.frame(x=c(qnorm(1-p),tail_high), y=c(0,dnorm(tail_high)))
+
+library(ggplot2)
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dnorm) +
+  geom_polygon(data = df_tl, aes(x,y), fill = "#99CCFF") +
+  geom_polygon(data = df_th, aes(x,y), fill = "#99CCFF") +
+  geom_vline(xintercept = qnorm(p), lty = "dashed", lwd = 0.3) +
+  geom_vline(xintercept = qnorm(1-p), lty = "dashed", lwd = 0.3) +
+  annotate(geom = "text", -1.97, 0.1, label = "-1.96", hjust = "right") +
+  annotate(geom = "text", 1.97, 0.1, label = "1.96", hjust = "left") +
+  theme_classic() +
+  labs(x="", y="")
+
+
+```
+
+## A distribuição normal z ~ N(0,1)
+
+```{r, echo=TRUE}
+
+qnorm(p)
+qnorm(1-p)
+
+pnorm(-1.96)
+pnorm(1.96)
+```
+
 ## P-valor {background-color="#e8f4f8"}
 
 ### DEFINIÇÃO
