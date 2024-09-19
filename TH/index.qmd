@@ -230,6 +230,9 @@ M <- as.table(rbind(c(117, 54), c(950, 348)))
 ### Rótulos para tabela
 dimnames(M) <- list(mortalidade = c("Vivos","Mortos"),
                     hábito_fumar = c("Não fumante","Fumante"))
+
+knitr::kable(M)
+
 ```
 
 # Hipóteses
