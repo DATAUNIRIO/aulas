@@ -4,7 +4,7 @@ author: "Steven Ross"
 format: 
   revealjs:
     theme: resources/scss/theme.scss
-    footer: "[aulas.metodosquantitativos.com/](https://aulas.metodosquantitativos.com/)"
+    footer: "[aulas.metodosquantitativos.com/](https://aulasmetodosquantitativos.netlify.app/)"
     title-slide-attributes:
       data-background-image: resources/images/cover.gif
       data-background-size: cover
