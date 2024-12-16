@@ -1,0 +1,50 @@
+---
+title: "Variável Aleatória"
+format: PrettyPDF-pdf
+---
+
+## Introdução
+
+Ao lançar um dado dez vezes, foram obervados os seguintes resultados:
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+library(flextable)
+library(dplyr)
+dado = data.frame(numero= c(paste0("Lançamento ",1:10)),
+               valor = c(6,3,3,6,1,4,5,2,5,5))
+ 
+dado %>% flextable(cwidth = 0.95,  cheight = 0.30)
+```
+
+Vamos contar quantas vezes saiu cada uma das faces e elaboramos uma nova tabela:
+
+```{r,echo=TRUE,warning=FALSE}
+
+VA = data.frame(numero= 1:6,
+               frequência = c(1,1,2,1,3,2))
+
+VA %>% flextable()
+
+```
+
+Esta tabela constitui o que chamamos de *Distribuição da Variável Aleatória* com sua frequência n.
+
+## Distribuição de probabilidade
+
+Com isso, podemos calcular uma distribuição de probabilidade.
+
+```{r}
+
+VA$probabilidade = VA$frequência/10
+VA %>% flextable()
+```
+
+Podemos agora calcular o valor esperado.
+
+$$ E[x] = x*p(x)$$
+
+$$ E[x] =1*0,1+2*0,1+3*0,2+4*0,1+5*0,3+6*0,2 = 4 $$
+
+
+
+
