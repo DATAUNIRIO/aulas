@@ -8,7 +8,7 @@ title: "Plano de Ensino"
 
 ## Objetivos
 
-Este curso tem como objtivo principal capacitar o estudante a <mark>identificar, formular e testar hipóteses </mark>sobre fenôomenos observacionais e aplicar a ferramenta adequada com o tipo de fenômeno que se deseja investigar. Este curso deverá também prover conhecimentos dos métodos quantitativos básicos de análise de dados e de programação, a fim de permitir ao participante tomar decisões orientada a dados. O enoque será dado as aplicações em pesquisas em ciências sociais.
+Este curso tem como objetivo principal capacitar o estudante a <mark>identificar, formular e testar hipóteses sobre fenômenos observacionais</mark> e aplicar a ferramenta adequada com o tipo de fenômeno que se deseja investigar. Este curso deverá também prover conhecimentos dos métodos quantitativos básicos de análise de dados e de programação, a fim de permitir ao participante tomar decisões orientada a dados. O enfoque será dado as aplicações em pesquisas em ciências sociais.
 
 
 ## Programa
