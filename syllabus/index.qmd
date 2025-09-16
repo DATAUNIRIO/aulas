@@ -1,0 +1,89 @@
+---
+title: "Plano de Ensino"
+---
+
+<section class="example-post">
+<div class="entry-content">
+
+
+## Objetivos
+
+Este curso tem como objtivo principal capacitar o estudante a <mark>identificar, formular e testar hipóteses </mark>sobre fenôomenos observacionais e aplicar a ferramenta adequada com o tipo de fenômeno que se deseja investigar. Este curso deverá também prover conhecimentos dos métodos quantitativos básicos de análise de dados e de programação, a fim de permitir ao participante tomar decisões orientada a dados. O enoque será dado as aplicações em pesquisas em ciências sociais.
+
+
+## Programa
+
+### 1. Linguagem orientada a objetos
+
+Introdução à programação com o Python/R, objeto, vetor, lista, matriz, operações e manipulação de dados  
+
+### 2. Tipos dados e tipos de variáveis 
+
+Definição de banco de dados. formatos csv, excel, json, txt, entre outros.
+
+Variáveis qualitativas (nominal e ordinal) e Variáveis quantitativas (discretas e continuas).
+
+
+### 3. Análise de variável qualitativa
+
+Tabelas de frequência, proporções, gráficos de pizza e de barra.
+
+### 4. Análise de variável quantitativa
+
+Quartis e outliers
+Medidas de posição: média, mediana, moda, 
+Medidas de dispersão: <mark>variância e desvio padrão</mark>
+Histograma, 
+
+
+### 5. Associação entre duas variáveis
+
+Coeficiente de correlação, resumo numérico por grupo
+boxplot, diagrama de dispersão
+
+### 6. Probabilidade
+
+Definição de probabilide, elementos de probabilidade, distribuição de probabilidades, <mark>a curva normal</mark> 
+
+### 7. Planejamento Amostral
+
+População e amostra, métodos de seleção de amostra, amostra probabilistica e não probabilistica, <mark>amostra enviesada por convêniencia</mark> , tamanho da amostra.
+
+### 8. Inferencia Estatística e Teste de Hipóteses
+
+Intervalo de confiança, <mark>alpha</mark> , beta & poder do teste, <mark>valor-p</mark> , teste t-student
+
+### 9. Testes não-paramétricos para variáveis qualitativas
+
+Teste qui-quadrado, teste exato de fisher
+
+### 10. Testes para associação de variáveis quantitativas
+
+<mark>Teste de normalidade</mark>, teste de correlação de pearson, teste de correlação de spearman
+
+### 11. Testes para associação de variáveis quantitativa e qualitativas
+
+Teste de bartlett/levene, <mark>Análise da Variância</mark>, Análise da Variância de Welch (variâncias desiguais),  teste de Mann-Whitney, teste Kruscal Wallis.
+
+### 12. Regressão simples e Múltiplas
+
+Análise de modelos lineares
+
+
+## Bibliografia Básica
+
+1. Métodos Estatísticos Para As Ciências Sociais - 4ª Ed. Autor, Finlay, Barbara; Agresti, Alan. Editora, Penso.  
+2. Estatística Básica/Pedro A. Morettin, Wilton O. Bussab. 6. ed. – São Paulo : Saraiva, 2010.
+
+## Bibliografia Complementar
+
+1. Python para análise de dados: Tratamento de dados com Pandas, NumPy e IPython. McKinney, Wes. Novatec Editora, 2018.
+2. Estatística aplicada à administração. Stevenson, William J. Harbra São Paulo, 1986.
+3. Estatística prática para cientistas de dados. BRUCE, Andrew; BRUCE, Peter. Alta Books, 2019.
+4. R para cientistas sociais Jakson Alves de Aquino. Ilhéus, BA: EDITUS, 2014. 157 p.Disponível em: «http://www.uesc.br/editora/livrosdigitais_20140513/r_cientistas.pdf». 
+5. 100 statistical tests, KANJI, Gopal K., 2006.
+
+
+
+</div>
+</section>
