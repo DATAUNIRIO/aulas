@@ -35,6 +35,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -76,60 +105,143 @@ ul.task-list li input[type="checkbox"] {
 
 <section class="example-post">
 <div class="entry-content">
+<p>Em oposição ao saber inerte (acumulação de conhecimentos sem saber onde utilizá-los), neste curso vamos buscar um saber aplicado/prático (um saber do cotidiano).A abordagem do <em>Learning By Doing</em> (Aprender fazendo) enfatiza a construção do conhecimento por meio da prática, integrando criatividade, responsabilidade individual e colaboração coletiva, sem negligenciar a necessidade de embasamento teórico.</p>
 <section id="objetivos" class="level2">
 <h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
 <p>Este curso tem como objetivo principal capacitar o estudante a <mark>identificar, formular e testar hipóteses sobre fenômenos observacionais</mark> e aplicar a ferramenta adequada com o tipo de fenômeno que se deseja investigar. Este curso deverá também prover conhecimentos dos métodos quantitativos básicos de análise de dados e de programação, a fim de permitir ao participante tomar decisões orientada a dados. O enfoque será dado as aplicações em pesquisas em ciências sociais.</p>
 </section>
-<section id="programa" class="level2">
-<h2 class="anchored" data-anchor-id="programa">Programa</h2>
+<section id="estrutura-do-curso" class="level2">
+<h2 class="anchored" data-anchor-id="estrutura-do-curso">Estrutura do Curso</h2>
+<p>O semestre está organizado em dois módulos interdependentes:</p>
+<p><mark>Módulo I</mark>: Introdução aos fundamentos da pesquisa quantitativa, familiarização com as linguagens de programação Python e R, análise estatística descritiva e visualização gráfica de bancos de dados.</p>
+<p><mark>Módulo II</mark>: Conceitos de inferência estatística, incluindo amostragem, probabilidades, intervalos de confiança, testes de hipóteses (paramétricos e não paramétricos) e modelagem estatística.</p>
+</section>
+<section id="dados-disponíveis" class="level2">
+<h2 class="anchored" data-anchor-id="dados-disponíveis">Dados Disponíveis</h2>
+<p>Os bancos de dados utilizados estão disponíveis em: <mark> <a href="https://github.com/DATAUNIRIO/dados_para_aula">https://github.com/DATAUNIRIO/dados_para_aula</a></mark></p>
+</section>
+<section id="conteúdo-programático-detalhado" class="level2">
+<h2 class="anchored" data-anchor-id="conteúdo-programático-detalhado">Conteúdo programático detalhado</h2>
 <section id="linguagem-orientada-a-objetos" class="level3">
 <h3 class="anchored" data-anchor-id="linguagem-orientada-a-objetos">1. Linguagem orientada a objetos</h3>
-<p>Introdução à programação com o Python/R, objeto, vetor, lista, matriz, operações e manipulação de dados</p>
+<p>Introdução à programação com o Python/R, objeto, vetor, lista, operações</p>
+</section>
+<section id="linguagem-orientada-a-objetos---parte-2" class="level3">
+<h3 class="anchored" data-anchor-id="linguagem-orientada-a-objetos---parte-2">2. Linguagem orientada a objetos - Parte 2</h3>
+<p>Introdução à programação com o Python/R, matriz e manipulação de dados</p>
 </section>
 <section id="tipos-dados-e-tipos-de-variáveis" class="level3">
-<h3 class="anchored" data-anchor-id="tipos-dados-e-tipos-de-variáveis">2. Tipos dados e tipos de variáveis</h3>
+<h3 class="anchored" data-anchor-id="tipos-dados-e-tipos-de-variáveis">3. Tipos dados e tipos de variáveis</h3>
 <p>Definição de banco de dados. formatos csv, excel, json, txt, entre outros.</p>
 <p>Variáveis qualitativas (nominal e ordinal) e Variáveis quantitativas (discretas e continuas).</p>
 </section>
 <section id="análise-de-variável-qualitativa" class="level3">
-<h3 class="anchored" data-anchor-id="análise-de-variável-qualitativa">3. Análise de variável qualitativa</h3>
+<h3 class="anchored" data-anchor-id="análise-de-variável-qualitativa">4. Análise de variável qualitativa</h3>
 <p>Tabelas de frequência, proporções, gráficos de pizza e de barra.</p>
 </section>
 <section id="análise-de-variável-quantitativa" class="level3">
-<h3 class="anchored" data-anchor-id="análise-de-variável-quantitativa">4. Análise de variável quantitativa</h3>
+<h3 class="anchored" data-anchor-id="análise-de-variável-quantitativa">5. Análise de variável quantitativa</h3>
 <p>Quartis e outliers Medidas de posição: média, mediana, moda, Medidas de dispersão: <mark>variância e desvio padrão</mark> Histograma,</p>
 </section>
 <section id="associação-entre-duas-variáveis" class="level3">
-<h3 class="anchored" data-anchor-id="associação-entre-duas-variáveis">5. Associação entre duas variáveis</h3>
-<p>Coeficiente de correlação, resumo numérico por grupo boxplot, diagrama de dispersão</p>
+<h3 class="anchored" data-anchor-id="associação-entre-duas-variáveis">6. Associação entre duas variáveis</h3>
+<p>Resumo numérico por grupo, boxplot,</p>
+</section>
+<section id="associação-entre-duas-variáveis---parte-2" class="level3">
+<h3 class="anchored" data-anchor-id="associação-entre-duas-variáveis---parte-2">7. Associação entre duas variáveis - Parte 2</h3>
+<p>Coeficiente de correlação, diagrama de dispersão</p>
 </section>
 <section id="probabilidade" class="level3">
-<h3 class="anchored" data-anchor-id="probabilidade">6. Probabilidade</h3>
-<p>Definição de probabilide, elementos de probabilidade, distribuição de probabilidades, <mark>a curva normal</mark></p>
+<h3 class="anchored" data-anchor-id="probabilidade">8. Probabilidade</h3>
+<p>Definição de probabilide, elementos de probabilidade, distribuição de probabilidades</p>
+</section>
+<section id="probabilidade-1" class="level3">
+<h3 class="anchored" data-anchor-id="probabilidade-1">9. Probabilidade</h3>
+<p>A curva normal</p>
 </section>
 <section id="planejamento-amostral" class="level3">
-<h3 class="anchored" data-anchor-id="planejamento-amostral">7. Planejamento Amostral</h3>
+<h3 class="anchored" data-anchor-id="planejamento-amostral">10. Planejamento Amostral</h3>
 <p>População e amostra, métodos de seleção de amostra, amostra probabilistica e não probabilistica, <mark>amostra enviesada por convêniencia</mark> , tamanho da amostra.</p>
 </section>
 <section id="inferencia-estatística-e-teste-de-hipóteses" class="level3">
-<h3 class="anchored" data-anchor-id="inferencia-estatística-e-teste-de-hipóteses">8. Inferencia Estatística e Teste de Hipóteses</h3>
+<h3 class="anchored" data-anchor-id="inferencia-estatística-e-teste-de-hipóteses">11. Inferencia Estatística e Teste de Hipóteses</h3>
 <p>Intervalo de confiança, <mark>alpha</mark> , beta &amp; poder do teste, <mark>valor-p</mark> , teste t-student</p>
 </section>
 <section id="testes-não-paramétricos-para-variáveis-qualitativas" class="level3">
-<h3 class="anchored" data-anchor-id="testes-não-paramétricos-para-variáveis-qualitativas">9. Testes não-paramétricos para variáveis qualitativas</h3>
+<h3 class="anchored" data-anchor-id="testes-não-paramétricos-para-variáveis-qualitativas">12. Testes não-paramétricos para variáveis qualitativas</h3>
 <p>Teste qui-quadrado, teste exato de fisher</p>
 </section>
 <section id="testes-para-associação-de-variáveis-quantitativas" class="level3">
-<h3 class="anchored" data-anchor-id="testes-para-associação-de-variáveis-quantitativas">10. Testes para associação de variáveis quantitativas</h3>
+<h3 class="anchored" data-anchor-id="testes-para-associação-de-variáveis-quantitativas">13. Testes para associação de variáveis quantitativas</h3>
 <p><mark>Teste de normalidade</mark>, teste de correlação de pearson, teste de correlação de spearman</p>
 </section>
 <section id="testes-para-associação-de-variáveis-quantitativa-e-qualitativas" class="level3">
-<h3 class="anchored" data-anchor-id="testes-para-associação-de-variáveis-quantitativa-e-qualitativas">11. Testes para associação de variáveis quantitativa e qualitativas</h3>
+<h3 class="anchored" data-anchor-id="testes-para-associação-de-variáveis-quantitativa-e-qualitativas">14. Testes para associação de variáveis quantitativa e qualitativas</h3>
 <p>Teste de bartlett/levene, <mark>Análise da Variância</mark>, Análise da Variância de Welch (variâncias desiguais), teste de Mann-Whitney, teste Kruscal Wallis.</p>
 </section>
 <section id="regressão-simples-e-múltiplas" class="level3">
-<h3 class="anchored" data-anchor-id="regressão-simples-e-múltiplas">12. Regressão simples e Múltiplas</h3>
+<h3 class="anchored" data-anchor-id="regressão-simples-e-múltiplas">15. Regressão simples e Múltiplas</h3>
 <p>Análise de modelos lineares</p>
+</section>
+</section>
+<section id="avaliação" class="level1">
+<h1>Avaliação:</h1>
+<p>O curso de Estatística terá duas avaliações:</p>
+<p>O primeiro componente (<mark>Avaliação 1</mark>) contém <mark>três avaliações individuais</mark> onde os(as) alunos(as) precisam escrever um texto sobre análise de dados com o desenvolvimento e a interpretação de estatísticas. (Esse primeiro componente deve ser individual).</p>
+<p>O segundo componente (<mark>Avaliação 2</mark>) será um projeto estatístico que será composto de um artigo com até 15 páginas. Nessa última avaliação vocês serão responsáveis por buscar a base de dados e pela formulação do problema. Essa avaliação está detalhada mais abaixo. <mark>A composição da segunda nota será: 70% para o trabalho escrito &amp; 30% para a apresentação do trabalho. O projeto estatístico pode ser em grupo de quatro (mínimo) ou cinco (máximo) alunos</mark>.</p>
+<p>A nota final será a média das duas avaliações.</p>
+<p><span class="math display">\[ Média final=\frac{Avaliação 1 + Avaliação 2}{2}\]</span></p>
+<p>De acordo com o regulamento da UNIRIO, sua média deve ser igual ou superior a 7 (sete) para que um aluno(a) seja aprovado(a) na disciplina sem ter que ir para a prova final. Caso fique em prova final, sua média final deverá ser igual ou superior a 5 (cinco).</p>
+<p>IMPORTANTE: Além disso, está previsto 01 ponto extra na primeira avaliação pela participação no apoio aos colegas no (aluno(a) com o maior engajamento no Fórum de Dúvidas do Mural do Google).</p>
+<section id="formato-dos-relatórios" class="level2">
+<h2 class="anchored" data-anchor-id="formato-dos-relatórios">Formato dos Relatórios</h2>
+<section id="proposta." class="level4">
+<h4 class="anchored" data-anchor-id="proposta.">1 – Proposta.</h4>
+<p>A proposta preliminar deverá ter: 1. Uma breve declaração dos objetivos e hipóteses. 2. Fonte dos dados. 3. Descrição detalhada do conjunto de dados (dicionário de dados - codebook). 4. Número de observações (número de linhas do banco de dados). Este relatório não precisa conter qualquer resultado.</p>
+</section>
+<section id="análise-de-dados-preliminar" class="level4">
+<h4 class="anchored" data-anchor-id="análise-de-dados-preliminar">2 - Análise de dados preliminar</h4>
+<p>Este relatório é apenas uma descrição do trabalho em andamento. Você deve montar um detalhamento do método de análise. Em outras palavras, descrever a metodologia que você irá utilizar. Se quiser, será possível incluir estatística descritiva para o banco de dados, tais como média, desvio padrão e correlações, histogramas, box-plot, diagrama de dispersão, e outras ferramentas do curso.</p>
+<p>Não há arranjo formal deste relatório e ele não precisa ser maior do que 2-3 páginas em adição à proposta inicial. O objetivo deste relatório é ajudá-lo a evitar um final de semestre corrido para concluir o projeto no tempo.</p>
+</section>
+<section id="relatório-final" class="level4">
+<h4 class="anchored" data-anchor-id="relatório-final">3 - Relatório Final</h4>
+<p>O relatório final deve conter o seguinte:</p>
+<ol type="1">
+<li>Folha de rosto que contém o seu nome, matrícula, endereço de email e um resumo (Sumário executivo) em um único parágrafo.</li>
+<li>Introdução.<br>
+</li>
+<li>Objetivos.<br>
+</li>
+<li>Marco Teórico (opcional para graduação).<br>
+</li>
+<li>Metodologia.<br>
+5.1 Descrição da base de dados, incluindo:<br>
+</li>
+</ol>
+<ol type="a">
+<li>Descrição de todas as variáveis da base de dados (dicionário de dados - codebook).<br>
+</li>
+<li>O tamanho da amostra (número de linhas do banco de dados), n.<br>
+</li>
+<li>Como foram construídos os indicadores (exemplo: Taxa de homicídios = Número de homicídios / População * 100.000<br>
+5.2. Metodologia utilizada<br>
+</li>
+</ol>
+<ol start="6" type="1">
+<li>Análise de Resultados<br>
+</li>
+<li>Discussão<br>
+</li>
+<li>Conclusão (um parecer com base na metodologia utilizada e na base de dados – que recomendações você faria ao gestor público?).</li>
+</ol>
+<p>Aqui tem um passo-a-passo para a construção do relatório final: <a href="https://aulasmetodosquantitativos.netlify.app/relatoriofinal/">https://aulasmetodosquantitativos.netlify.app/relatoriofinal/</a></p>
+<p>O relatório final deve ter entre 14 e 15 páginas dependendo da quantidade de análises. Por favor, não copie simplesmente a saída bruta do Python/R em seu relatório sem análise do output/resultado. Você pode me enviar uma versão preliminar de seu relatório (sugiro que você faça isso), para correção e feedbacks. E, claro, você deve se sentir livre para se encontrar comigo (com ou sem relatório) para discutir o projeto de estatística desse semestre.</p>
+<section id="exemplos-de-trabalhos-finais-relatório-de-alunos-dos-semestres-anteriores" class="level5">
+<h5 class="anchored" data-anchor-id="exemplos-de-trabalhos-finais-relatório-de-alunos-dos-semestres-anteriores">Exemplos de trabalhos finais (relatório de alunos dos semestres anteriores)</h5>
+<p><a href="https://rpubs.com/AnaCarolinaMarini/RelatorioFinal">https://rpubs.com/AnaCarolinaMarini/RelatorioFinal</a></p>
+<p><a href="https://rpubs.com/andrehozumi/797710">https://rpubs.com/andrehozumi/797710</a></p>
+</section>
 </section>
 </section>
 <section id="bibliografia-básica" class="level2">
@@ -148,7 +260,13 @@ ul.task-list li input[type="checkbox"] {
 <li>Estatística prática para cientistas de dados. BRUCE, Andrew; BRUCE, Peter. Alta Books, 2019.</li>
 <li>R para cientistas sociais Jakson Alves de Aquino. Ilhéus, BA: EDITUS, 2014. 157 p.Disponível em: «http://www.uesc.br/editora/livrosdigitais_20140513/r_cientistas.pdf».</li>
 <li>100 statistical tests, KANJI, Gopal K., 2006.</li>
+<li>Estatística Básica a Arte de Trabalhar com Dados. DA CUNHA, S.B.; CARVAJAL, S.R. Elsevier Brasil, 2009.</li>
 </ol>
+</section>
+<section id="complementação-dos-estudos" class="level2">
+<h2 class="anchored" data-anchor-id="complementação-dos-estudos">Complementação dos Estudos</h2>
+<p>Recomenda-se que os discentes complementem sua formação mediante a leitura da bibliografia indicada, a qual fornece os fundamentos teóricos e aplicados essenciais para o domínio dos conteúdos abordados.</p>
+</section>
 </section>
 </div>
 </section>

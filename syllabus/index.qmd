@@ -5,70 +5,152 @@ title: "Plano de Ensino"
 <section class="example-post">
 <div class="entry-content">
 
+Em oposição ao saber inerte (acumulação de conhecimentos sem saber onde utilizá-los), neste curso vamos buscar um saber aplicado/prático (um saber do cotidiano).A abordagem do *Learning By Doing* (Aprender fazendo) enfatiza a construção do conhecimento por meio da prática, integrando criatividade, responsabilidade individual e colaboração coletiva, sem negligenciar a necessidade de embasamento teórico.
 
 ## Objetivos
 
 Este curso tem como objetivo principal capacitar o estudante a <mark>identificar, formular e testar hipóteses sobre fenômenos observacionais</mark> e aplicar a ferramenta adequada com o tipo de fenômeno que se deseja investigar. Este curso deverá também prover conhecimentos dos métodos quantitativos básicos de análise de dados e de programação, a fim de permitir ao participante tomar decisões orientada a dados. O enfoque será dado as aplicações em pesquisas em ciências sociais.
 
+## Estrutura do Curso 
 
-## Programa
+O semestre está organizado em dois módulos interdependentes:
+
+<mark>Módulo I</mark>: Introdução aos fundamentos da pesquisa quantitativa, familiarização com as linguagens de programação Python e R, análise estatística descritiva e visualização gráfica de bancos de dados.
+
+<mark>Módulo II</mark>: Conceitos de inferência estatística, incluindo amostragem, probabilidades, intervalos de confiança, testes de hipóteses (paramétricos e não paramétricos) e modelagem estatística.
+
+## Dados Disponíveis 
+
+Os bancos de dados utilizados estão disponíveis em:
+<mark> [https://github.com/DATAUNIRIO/dados_para_aula](https://github.com/DATAUNIRIO/dados_para_aula)</mark> 
+
+## Conteúdo programático detalhado
 
 ### 1. Linguagem orientada a objetos
 
-Introdução à programação com o Python/R, objeto, vetor, lista, matriz, operações e manipulação de dados  
+Introdução à programação com o Python/R, objeto, vetor, lista, operações
 
-### 2. Tipos dados e tipos de variáveis 
+### 2. Linguagem orientada a objetos - Parte 2
+
+Introdução à programação com o Python/R, matriz e manipulação de dados  
+
+### 3. Tipos dados e tipos de variáveis 
 
 Definição de banco de dados. formatos csv, excel, json, txt, entre outros.
 
 Variáveis qualitativas (nominal e ordinal) e Variáveis quantitativas (discretas e continuas).
 
-
-### 3. Análise de variável qualitativa
+### 4. Análise de variável qualitativa
 
 Tabelas de frequência, proporções, gráficos de pizza e de barra.
 
-### 4. Análise de variável quantitativa
+### 5. Análise de variável quantitativa
 
 Quartis e outliers
 Medidas de posição: média, mediana, moda, 
 Medidas de dispersão: <mark>variância e desvio padrão</mark>
 Histograma, 
 
+### 6. Associação entre duas variáveis
 
-### 5. Associação entre duas variáveis
+Resumo numérico por grupo, boxplot, 
 
-Coeficiente de correlação, resumo numérico por grupo
-boxplot, diagrama de dispersão
+### 7. Associação entre duas variáveis - Parte 2 
 
-### 6. Probabilidade
+Coeficiente de correlação, diagrama de dispersão
 
-Definição de probabilide, elementos de probabilidade, distribuição de probabilidades, <mark>a curva normal</mark> 
+### 8. Probabilidade
 
-### 7. Planejamento Amostral
+Definição de probabilide, elementos de probabilidade, distribuição de probabilidades
+
+### 9. Probabilidade
+
+A curva normal
+
+
+### 10. Planejamento Amostral
 
 População e amostra, métodos de seleção de amostra, amostra probabilistica e não probabilistica, <mark>amostra enviesada por convêniencia</mark> , tamanho da amostra.
 
-### 8. Inferencia Estatística e Teste de Hipóteses
+### 11. Inferencia Estatística e Teste de Hipóteses
 
 Intervalo de confiança, <mark>alpha</mark> , beta & poder do teste, <mark>valor-p</mark> , teste t-student
 
-### 9. Testes não-paramétricos para variáveis qualitativas
+### 12. Testes não-paramétricos para variáveis qualitativas
 
 Teste qui-quadrado, teste exato de fisher
 
-### 10. Testes para associação de variáveis quantitativas
+### 13. Testes para associação de variáveis quantitativas
 
 <mark>Teste de normalidade</mark>, teste de correlação de pearson, teste de correlação de spearman
 
-### 11. Testes para associação de variáveis quantitativa e qualitativas
+### 14. Testes para associação de variáveis quantitativa e qualitativas
 
 Teste de bartlett/levene, <mark>Análise da Variância</mark>, Análise da Variância de Welch (variâncias desiguais),  teste de Mann-Whitney, teste Kruscal Wallis.
 
-### 12. Regressão simples e Múltiplas
+### 15. Regressão simples e Múltiplas
 
 Análise de modelos lineares
 
+# Avaliação:
+
+O curso de Estatística terá duas avaliações:
+
+O primeiro componente (<mark>Avaliação 1</mark>) contém <mark>três avaliações individuais</mark>  onde os(as) alunos(as) precisam escrever um texto sobre análise de dados com o desenvolvimento e a interpretação de estatísticas. (Esse primeiro componente deve ser individual).
+
+O segundo componente (<mark>Avaliação 2</mark>) será um projeto estatístico que será composto de um artigo com até 15 páginas. Nessa última avaliação vocês serão responsáveis por buscar a base de dados e pela formulação do problema. Essa avaliação está detalhada mais abaixo. <mark>A composição da segunda nota será: 70% para o trabalho escrito & 30% para a apresentação do trabalho. O projeto estatístico pode ser em grupo de quatro (mínimo) ou cinco (máximo) alunos</mark>.
+
+A nota final será a média das duas avaliações.
+
+$$ Média final=\frac{Avaliação 1 + Avaliação 2}{2}$$
+
+De acordo com o regulamento da UNIRIO, sua média deve ser igual ou superior a 7 (sete) para que um aluno(a) seja aprovado(a) na disciplina sem ter que ir para a prova final. Caso fique em prova final, sua média final deverá ser igual ou superior a 5 (cinco).
+
+IMPORTANTE: Além disso, está previsto 01 ponto extra na primeira avaliação pela participação no apoio aos colegas no (aluno(a) com o maior engajamento no Fórum de Dúvidas do Mural do Google).
+
+
+## Formato dos Relatórios
+
+#### 1 – Proposta. 
+A proposta preliminar deverá ter:
+1. Uma breve declaração dos objetivos e hipóteses.
+2. Fonte dos dados.
+3. Descrição detalhada do conjunto de dados (dicionário de dados - codebook).
+4. Número de observações (número de linhas do banco de dados).
+Este relatório não precisa conter qualquer resultado.
+
+#### 2 - Análise de dados preliminar  
+Este relatório é apenas uma descrição do trabalho em andamento. Você deve montar um detalhamento do método de análise. Em outras palavras, descrever a metodologia que você irá utilizar. Se quiser, será possível incluir estatística descritiva para o banco de dados, tais como média, desvio padrão e correlações, histogramas, box-plot, diagrama de dispersão, e outras ferramentas do curso.
+
+Não há arranjo formal deste relatório e ele não precisa ser maior do que 2-3 páginas em adição à proposta inicial. O objetivo deste relatório é ajudá-lo a evitar um final de semestre corrido para concluir o projeto no tempo.
+
+#### 3 - Relatório Final
+O relatório final deve conter o seguinte:  
+
+1. Folha de rosto que contém o seu nome, matrícula, endereço de email e um resumo (Sumário executivo) em um único parágrafo.
+2. Introdução.  
+3. Objetivos.  
+4. Marco Teórico (opcional para graduação).  
+5. Metodologia.  
+5.1 Descrição da base de dados, incluindo:  
+a. Descrição de todas as variáveis da base de dados (dicionário de dados - codebook).  
+b. O tamanho da amostra (número de linhas do banco de dados), n.  
+c. Como foram construídos os indicadores (exemplo: Taxa de homicídios = Número de homicídios / População * 100.000  
+5.2. Metodologia utilizada  
+6. Análise de Resultados  
+7. Discussão  
+8. Conclusão (um parecer com base na metodologia utilizada e na base de dados – que recomendações você faria ao gestor público?).  
+
+Aqui tem um passo-a-passo para a construção do relatório final:
+[https://aulasmetodosquantitativos.netlify.app/relatoriofinal/](https://aulasmetodosquantitativos.netlify.app/relatoriofinal/)
+
+O relatório final deve ter entre 14 e 15 páginas dependendo da quantidade de análises. Por favor, não copie simplesmente a saída bruta do Python/R em seu relatório sem análise do output/resultado. Você pode me enviar uma versão preliminar de seu relatório (sugiro que você faça isso), para correção e feedbacks. E, claro, você deve se sentir livre para se encontrar comigo (com ou sem relatório) para discutir o projeto de estatística desse semestre.
+
+##### Exemplos de trabalhos finais (relatório de alunos dos semestres anteriores)
+
+[https://rpubs.com/AnaCarolinaMarini/RelatorioFinal](https://rpubs.com/AnaCarolinaMarini/RelatorioFinal)
+
+[https://rpubs.com/andrehozumi/797710](https://rpubs.com/andrehozumi/797710)
 
 ## Bibliografia Básica
 
@@ -82,7 +164,12 @@ Análise de modelos lineares
 3. Estatística prática para cientistas de dados. BRUCE, Andrew; BRUCE, Peter. Alta Books, 2019.
 4. R para cientistas sociais Jakson Alves de Aquino. Ilhéus, BA: EDITUS, 2014. 157 p.Disponível em: «http://www.uesc.br/editora/livrosdigitais_20140513/r_cientistas.pdf». 
 5. 100 statistical tests, KANJI, Gopal K., 2006.
+6. Estatística Básica a Arte de Trabalhar com Dados. DA CUNHA, S.B.; CARVAJAL, S.R. Elsevier Brasil, 2009.
 
+
+## Complementação dos Estudos 
+
+Recomenda-se que os discentes complementem sua formação mediante a leitura da bibliografia indicada, a qual fornece os fundamentos teóricos e aplicados essenciais para o domínio dos conteúdos abordados.
 
 
 </div>
